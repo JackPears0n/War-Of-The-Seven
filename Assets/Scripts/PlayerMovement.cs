@@ -18,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Ground Check")]
     public float playerHeight;
-    public LayerMask isground;
-    bool isItGrounded;
+    public LayerMask isGround;
+    bool grounded;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -46,16 +46,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.rotation = camera.rotation;
+        transform.rotation = orientation.rotation;
 
         // Listens for input
         PlayerInput();
 
         // Ground Check
-        isItGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, isground);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, isGround);
 
         // Apply drag
-        if (isItGrounded)
+        if (grounded)
         {
             rb.drag = groundDrag;
         }
@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
         yInput = Input.GetAxisRaw("Vertical");
 
         // Checks if player can jump
-        if (Input.GetKey(jumpKey) && readyToJump && isItGrounded)
+        if (Input.GetKey(jumpKey) && readyToJump /*&& grounded*/)
         {
             readyToJump = false;
 
@@ -97,12 +97,12 @@ public class PlayerMovement : MonoBehaviour
 
         //Checks if player is on the ground
         // Is grounded
-        if(isItGrounded)
+        if(grounded)
         {
             rb.AddForce(moveDirect.normalized * speed * 10f, ForceMode.Force);
         }
         // Isn't grounded
-        else if(!isItGrounded)
+        else if(!grounded)
         {
             rb.AddForce(moveDirect.normalized * speed * 10f * airMultiplier, ForceMode.Force);
         }
