@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask isGround;
-    bool grounded;
+    public bool grounded;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -40,7 +40,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
-        readyToJump = true;
+        grounded = true;
+        readyToJump = true; 
     }
 
     // Update is called once per frame
@@ -48,11 +49,15 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.rotation = orientation.rotation;
 
-        // Listens for input
-        PlayerInput();
+
 
         // Ground Check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, isGround);
+        //grounded = DoRayCollisionCheck();
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight + 0.2f, isGround);
+
+
+        // Listens for input
+        PlayerInput();    
 
         // Apply drag
         if (grounded)
@@ -80,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         yInput = Input.GetAxisRaw("Vertical");
 
         // Checks if player can jump
-        if (Input.GetKey(jumpKey) && readyToJump /*&& grounded*/)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
 
@@ -106,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirect.normalized * speed * 10f * airMultiplier, ForceMode.Force);
         }
+        
 
 
     }
@@ -135,4 +141,27 @@ public class PlayerMovement : MonoBehaviour
     {
         readyToJump = true;
     }
+
+    // Ground check method
+    /*
+    public bool DoRayCollisionCheck()
+    {
+        // Cast a ray downward which is slightly longer than the player
+        RaycastHit hit = Physics.Raycast(transform.position, -Vector3.up, playerHeight + 0.2f, isGround);
+
+        hit = Physics.Raycast(transform.position, -Vector3.up, playerHeight, isGround);
+
+        // Show ray in editor
+        Debug.DrawRay(transform.position, -Vector3.up * (playerHeight + 0.2f), (hit.collider != null) ? Color.black : Color.red);
+
+        if (hit.collider.tag == "Ground")
+        {
+            return grounded == true;
+        }
+        else
+        {
+            return grounded;
+        }    
+    }
+    */
 }
