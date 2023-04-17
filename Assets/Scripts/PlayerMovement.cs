@@ -53,7 +53,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Ground Check
         //grounded = DoRayCollisionCheck();
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight + 0.2f, isGround);
+        grounded = Physics.Raycast(transform.position + (Vector3.up * 2), Vector3.down, playerHeight + 0.2f, isGround);
+        Debug.DrawRay(transform.position + (Vector3.up * 2), Vector3.down, Color.red, (playerHeight + 0.2f));
 
 
         // Listens for input

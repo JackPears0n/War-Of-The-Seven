@@ -43,6 +43,5 @@ public class PlayerCamScript : MonoBehaviour
         // Roate camera and its orientation
         transform.rotation = Quaternion.Euler(xRotate, yRotate, 0);
         camOrientation.rotation = Quaternion.Euler(0, yRotate, 0);
-        //characterBody.transform.Rotate(Vector3.up, xRotate);
     }
 }
