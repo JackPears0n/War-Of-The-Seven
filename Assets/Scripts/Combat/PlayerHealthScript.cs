@@ -15,13 +15,17 @@ public class PlayerHealthScript : MonoBehaviour
     // Variables
     //-----------
 
-    States state;
+    States state; 
+
     [Header("Character holders")]
     public GameObject tripHolder;
     public GameObject krisHolder;
 
     [Header("Bools")]
-    public bool dead;
+    public bool isTripActive = true;
+    public bool isKrisActive;
+    public bool isTripDead;
+    public bool isKrisDead;
 
     // Health values
     [Header("Health values")]
@@ -36,7 +40,7 @@ public class PlayerHealthScript : MonoBehaviour
 
     void Start()
     {
-        if (state == States.Trip)
+        if (isTripActive)
         {
             if (!PlayerPrefs.HasKey("TripHP"))
             {
@@ -50,7 +54,7 @@ public class PlayerHealthScript : MonoBehaviour
         }
 
 
-        if (state == States.Kris)
+        if (isKrisActive)
         {
             if (!PlayerPrefs.HasKey("KrisHP"))
             {
@@ -72,46 +76,53 @@ public class PlayerHealthScript : MonoBehaviour
 
     void CheckHealth()
     {
-        if (state == States.Trip)
+        if (isTripActive)
         {
             if (tripCurrentHealth <= 0)
             {
-                dead = true;
+                isTripDead = true;
                 ChangePC("Kris");
             }
             else
             {
-                dead = false;
+                isTripDead = false;
                 SaveHP();
             }
         }
 
-        if (state == States.Kris)
+        if (isKrisActive)
         {
-            if (tripCurrentHealth <= 0)
+            if (krisCurrentHealth <= 0)
             {
-                dead = true;
+                isKrisDead = true;
                 ChangePC("Trip");
             }
             else
             {
-                dead = false;
+                isKrisDead = false;
                 SaveHP();
             }
         }
-
+        
+        /*
+        if (isTripDead && isKrisDead)
+        {
+            state = States.Dead;
+            Die();
+        }
+        */
     }
 
     void LoadHP()
     {
-        if (state == States.Trip)
+        if (isTripActive)
         {
             tripCurrentHealth = PlayerPrefs.GetInt("TripHP");
             sliderValueHP.value = tripCurrentHealth;
             UpdateHPSlider(tripCurrentHealth);
         }
 
-        if (state == States.Kris)
+        if (isKrisActive)
         {
             krisCurrentHealth = PlayerPrefs.GetInt("KrisHP");
             sliderValueHP.value = krisCurrentHealth;
@@ -142,12 +153,12 @@ public class PlayerHealthScript : MonoBehaviour
 
     public void LoseHealth(int damage)
     {
-        if (state == States.Trip)
+        if (isTripActive)
         {
             tripCurrentHealth -= damage;
         }
 
-        if (state == States.Kris)
+        if (isKrisActive)
         {
             krisCurrentHealth -= damage;
         }
@@ -156,24 +167,39 @@ public class PlayerHealthScript : MonoBehaviour
 
     public void Heal(int heal)
     {
-        if (state == States.Trip)
+        if (isTripActive)
         {
             tripCurrentHealth += heal;
         }
 
-        if (state == States.Kris)
+        if (isKrisActive)
         {
             krisCurrentHealth += heal;
         }
         
     }
 
-    void ChangePC(string pCName)
+    public void ChangePC(string pCName)
     {
-        if (state == States.Trip)
+        if (isTripActive && isKrisDead == false)
         {
             tripHolder.SetActive(false);
             krisHolder.SetActive(true);
+            isTripActive = false;
+            isKrisActive = true;
+        }
+
+        if (isKrisActive && isTripDead == false)
+        {
+            krisHolder.SetActive(false);
+            tripHolder.SetActive(true);
+            isKrisActive = false;
+            isTripActive = true;
+        }
+
+        if (isTripDead && isKrisDead)
+        {
+            state = States.Dead;
         }
     }
 }

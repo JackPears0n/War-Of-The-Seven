@@ -10,6 +10,8 @@ public class VoidOrbAttack : MonoBehaviour
     public NavMeshAgent agent;
 
     public Transform player;
+
+    public GameObject playerHealth;
     private PlayerHealthScript pHS;
 
     [Header("Layers")]
@@ -35,7 +37,7 @@ public class VoidOrbAttack : MonoBehaviour
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        pHS = GetComponent<PlayerHealthScript>();
+        pHS = playerHealth.GetComponent<PlayerHealthScript>();
     }
 
     void Update()
@@ -50,13 +52,13 @@ public class VoidOrbAttack : MonoBehaviour
         if (!playerInFOV && !playerInAttackRange)
         {
             Patroling();
-            print("patroling");
+            //print("patroling");
         }
 
         if (playerInFOV && !playerInAttackRange)
         {
             ChasePlayer();
-            print("chasing");
+            //print("chasing");
         }
 
         if (playerInAttackRange && playerInFOV)
@@ -93,7 +95,7 @@ public class VoidOrbAttack : MonoBehaviour
         float randomx = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomx, transform.position.y, transform.position.z + randomz);
-        print(walkPoint);
+        //print(walkPoint);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         {
@@ -105,7 +107,7 @@ public class VoidOrbAttack : MonoBehaviour
     void ChasePlayer()
     {
         agent.SetDestination( new Vector3( player.position.x, transform.position.y, player.position.z) );
-        print(player.position);
+        //print(player.position);
     }
 
     void AttackPlayer()
@@ -118,8 +120,9 @@ public class VoidOrbAttack : MonoBehaviour
         if (!alreadyAttacked)
         {
             // Attack method here
-            //VoidFlash();
+            VoidFlash();
             print("attack");
+
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), attackCooldown);
         }

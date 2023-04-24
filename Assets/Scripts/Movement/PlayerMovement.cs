@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float speed;
     public float groundDrag;
+
     // Jump variables
     public float jumpForce;
     private bool readyToJump;
@@ -112,9 +113,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirect.normalized * speed * 10f * airMultiplier, ForceMode.Force);
         }
-        
-
-
     }
 
     private void SpeedControl()
