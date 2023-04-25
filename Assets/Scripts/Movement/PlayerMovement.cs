@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
+    States state;
+
     [Header("Movement")]
     public float speed;
     public float groundDrag;
@@ -15,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     private bool readyToJump;
     public float jumpCooldown = 1;
-    public float airMultiplier = 2;
+    public float airMultiplier = 1.5f;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -37,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        state = States.Idle;
+
         // Gets the rigidbody and stops it rotating
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -50,25 +54,139 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.rotation = orientation.rotation;
 
+        DoLogic();
+    }
 
+    private void FixedUpdate()
+    {
+        
+    }
 
-        // Ground Check
-        //grounded = DoRayCollisionCheck();
-        grounded = Physics.Raycast(transform.position + (Vector3.up * 2), Vector3.down, playerHeight + 0.2f, isGround);
-        Debug.DrawRay(transform.position + (Vector3.up * 2), Vector3.down, Color.red, (playerHeight + 0.2f));
+    //-------------------
+    // Enum Methods
+    //-------------------
 
-
-        // Listens for input
-        PlayerInput();    
-
-        // Apply drag
-        if (grounded)
+    private void DoLogic()
+    {
+        // Idle
+        if (state == States.Idle)
         {
-            rb.drag = groundDrag;
+            Idle();
+        }
+
+        // Moving whilst falling / on the floor 
+        if (state == States.Walking)
+        {
+            PlayerWalking();
+        }
+
+        // Jumping
+        if (state == States.Jumping)
+        {
+            PlayerJumping();
+        }
+
+        // Movement while attacking
+        if (state == States.Attacking)
+        {
+            PlayerAttacking();
+        }
+    }
+
+    private void Idle()
+    {
+        // Makes player walk
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        {
+            state = States.Walking;
+            PlayerWalking();
+        }
+
+        // Makes player jump
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        {
+            state = States.Jumping;
+            PlayerJumping();
+        }
+
+    }
+
+    private void PlayerWalking()
+    {
+        // Gets player input
+        PlayerInput();
+
+        // Casts a raycast to check if object is touching the ground
+        // If its touching the ground, rest the jump
+        GroundCheck();
+
+        // Applies drag
+        ApplyDrag();
+
+        // Makes the player move
+        MovePlayer();
+
+        // Goes back to idle
+        state = States.Idle;
+    }
+
+    private void PlayerJumping()
+    { 
+        
+        // Casts a raycast to check if object is touching the ground
+        // If its touching the ground, rest the jump
+        GroundCheck();
+
+        // Applies drag
+        ApplyDrag();
+        // Gets player input
+        PlayerInput();
+
+        // Checks if player can jump
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        {
+            readyToJump = false;
+
+            Jump();
+
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
+
+        // Checks to see any horisontal input
+        if (Input.GetButton("Horizontal"))
+        {
+            PlayerWalking();
         }
         else
         {
-            rb.drag = 0;
+            // Goes back to idle
+            state = States.Idle;
+        }
+
+    }
+
+    private void PlayerAttacking()
+    {
+        // Ground Check
+        GroundCheck();
+
+        // Apply drag
+        ApplyDrag();
+
+        // Listens for input
+        PlayerInput();
+
+        // Moves the player
+        MovePlayer();
+
+        // Checks if player can jump
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        {
+            readyToJump = false;
+
+            Jump();
+
+            Invoke(nameof(ResetJump), jumpCooldown);
         }
 
         // Stops the player going too fast
@@ -76,11 +194,9 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        MovePlayer();
-    }
-
+    //-------------------
+    // Other Methods
+    //-------------------
     private void PlayerInput()
     {
         xInput = Input.GetAxisRaw("Horizontal");
@@ -104,14 +220,26 @@ public class PlayerMovement : MonoBehaviour
 
         //Checks if player is on the ground
         // Is grounded
-        if(grounded)
+        if (grounded)
         {
             rb.AddForce(moveDirect.normalized * speed * 10f, ForceMode.Force);
         }
         // Isn't grounded
-        else if(!grounded)
+        else if (!grounded)
         {
             rb.AddForce(moveDirect.normalized * speed * 10f * airMultiplier, ForceMode.Force);
+        }
+    }
+
+    private void ApplyDrag()
+    {
+        if (grounded)
+        {
+            rb.drag = groundDrag;
+        }
+        else
+        {
+            rb.drag = 2;
         }
     }
 
@@ -128,6 +256,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void GroundCheck()
+    {
+        grounded = Physics.Raycast(transform.position + (Vector3.up * 2),
+            Vector3.down, playerHeight + 0.2f, isGround);
+        Debug.DrawRay(transform.position + (Vector3.up * 2),
+            Vector3.down, Color.red, (playerHeight + 0.2f));
+    }
+
     private void Jump()
     {
         // reset y velocity
@@ -141,26 +277,4 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
     }
 
-    // Ground check method
-    /*
-    public bool DoRayCollisionCheck()
-    {
-        // Cast a ray downward which is slightly longer than the player
-        RaycastHit hit = Physics.Raycast(transform.position, -Vector3.up, playerHeight + 0.2f, isGround);
-
-        hit = Physics.Raycast(transform.position, -Vector3.up, playerHeight, isGround);
-
-        // Show ray in editor
-        Debug.DrawRay(transform.position, -Vector3.up * (playerHeight + 0.2f), (hit.collider != null) ? Color.black : Color.red);
-
-        if (hit.collider.tag == "Ground")
-        {
-            return grounded == true;
-        }
-        else
-        {
-            return grounded;
-        }    
-    }
-    */
 }

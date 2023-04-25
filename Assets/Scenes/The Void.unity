@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2660,7 +2660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3450284569533482523, guid: 3bd9dcebdb4dcaa40adbe4ee05062c51, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -372.23
+      value: -451.4
       objectReference: {fileID: 0}
     - target: {fileID: 3450284569533482523, guid: 3bd9dcebdb4dcaa40adbe4ee05062c51, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2668,7 +2668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3450284569533482523, guid: 3bd9dcebdb4dcaa40adbe4ee05062c51, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -392.46
+      value: -454.2
       objectReference: {fileID: 0}
     - target: {fileID: 3450284569533482523, guid: 3bd9dcebdb4dcaa40adbe4ee05062c51, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5800,14 +5800,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  groundDrag: 0.4
-  jumpForce: 100
+  groundDrag: 4
+  jumpForce: 200
   jumpCooldown: 0.5
-  airMultiplier: 2
+  airMultiplier: 1.5
   playerHeight: 8
   isGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   grounded: 1
   jumpKey: 32
   orientation: {fileID: 681868808}
@@ -11287,14 +11287,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 18
-  groundDrag: 0.4
-  jumpForce: 90
+  groundDrag: 4
+  jumpForce: 180
   jumpCooldown: 0.5
-  airMultiplier: 2
+  airMultiplier: 1.5
   playerHeight: 5.333
   isGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   grounded: 1
   jumpKey: 32
   orientation: {fileID: 429732392}
