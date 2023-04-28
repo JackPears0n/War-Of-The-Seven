@@ -11,11 +11,20 @@ public class ChangePlayerScript : MonoBehaviour
     public GameObject tripHolder;
     public GameObject krisHolder;
 
+    private PlayerHealthScript pHS;
+
     // Start is called before the first frame update
     void Start()
     {
+        pHS = GetComponent<PlayerHealthScript>();
+
+        pHS.isKrisActive = false;
         krisHolder.SetActive(false);
+
+        pHS.isTripActive = true;
         tripHolder.SetActive(true);
+
+        
     }
 
     // Update is called once per frame
@@ -23,20 +32,63 @@ public class ChangePlayerScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            krisHolder.SetActive(false);
-            tripHolder.transform.position = krisHolder.transform.position;
-            tripHolder.SetActive(true);
-            state = States.Idle;
-
+            ChangeToTrip();
         }
 
+        
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            tripHolder.SetActive(false);
-            krisHolder.transform.position = tripHolder.transform.position;
-            krisHolder.SetActive(true);
-            state = States.Idle;
-
+            ChangeToKris();
         }
     }
+
+    void ChangeToTrip()
+    {
+        if (pHS.isKrisActive)
+        {            
+            // Activates the Trip object and makes it the current player
+            pHS.isTripActive = true;
+            tripHolder.SetActive(true);
+
+            // Moves Trip to where Kris was
+            tripHolder.transform.position = krisHolder.transform.position;
+
+            // Deactivates Kris
+            krisHolder.SetActive(false);
+            pHS.isKrisActive = false;
+
+            // Makses the state idle
+            state = States.Idle;
+        }
+        else
+        {
+            return;
+        }
+
+    }
+
+    void ChangeToKris()
+    {
+        if (pHS.isTripActive)
+        {       
+            // Activates the Kris object and makes it the current player
+            pHS.isKrisActive = true;
+            krisHolder.SetActive(true);   
+            
+            // Moves Kris to where Trip was
+            krisHolder.transform.position = tripHolder.transform.position;
+
+            // Deactivates Trip
+            pHS.isTripActive = false;
+            tripHolder.SetActive(false);
+
+            // Makses the state idle
+            state = States.Idle;
+        }
+        else
+        {
+            return;
+        }
+    }
+
 }

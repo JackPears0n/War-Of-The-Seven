@@ -34,9 +34,21 @@ public class PlayerHealthScript : MonoBehaviour
     public int tripMaxHealth;
     public int krisMaxHealth;
 
+    // Invinsability values
+    [Header("Invinsability values")]
+    [SerializeField] private float iFramesDuration;
+    [SerializeField] private int numberOfFlashes;
+    public bool invulnerable;
+
+    // Health Shield
+    [Header("Health Shield")]
+    public int shieldStrength;
+    public int currentShield;
+
     // HP slider
     [Header("Slider")]
     [SerializeField] Slider sliderValueHP = null;
+    [SerializeField] Slider sliderValueShield = null; 
 
     void Start()
     {
@@ -72,6 +84,7 @@ public class PlayerHealthScript : MonoBehaviour
     void Update()
     {
         CheckHealth();
+        UpdateSheildSlider(currentShield);
     }
 
     void CheckHealth()
@@ -104,13 +117,6 @@ public class PlayerHealthScript : MonoBehaviour
             }
         }
         
-        /*
-        if (isTripDead && isKrisDead)
-        {
-            state = States.Dead;
-            Die();
-        }
-        */
     }
 
     void LoadHP()
@@ -142,6 +148,10 @@ public class PlayerHealthScript : MonoBehaviour
         sliderValueHP.value = currentHealth;
         SaveHP();
     }
+    void UpdateSheildSlider(int ss)
+    {
+        sliderValueShield.value = ss;
+    }
 
     void Die()
     {
@@ -153,16 +163,34 @@ public class PlayerHealthScript : MonoBehaviour
 
     public void LoseHealth(int damage)
     {
-        if (isTripActive)
+        if (!invulnerable)
         {
-            tripCurrentHealth -= damage;
-        }
+            if (isTripActive)
+            {
+                if (currentShield > 0)
+                {
+                    currentShield -= damage;
+                }
+                else
+                {
+                    tripCurrentHealth -= damage;
+                }
 
-        if (isKrisActive)
-        {
-            krisCurrentHealth -= damage;
-        }
+            }
 
+            if (isKrisActive)
+            {
+                if (currentShield > 0)
+                {
+                    currentShield -= damage;
+                }
+                else
+                {
+                    krisCurrentHealth -= damage;
+                }
+
+            }
+        }
     }
 
     public void Heal(int heal)
@@ -177,6 +205,41 @@ public class PlayerHealthScript : MonoBehaviour
             krisCurrentHealth += heal;
         }
         
+    }
+
+    public IEnumerable HoT (int heal)
+    {
+        if (isTripActive)
+        {
+            tripCurrentHealth += heal;
+            if (tripMaxHealth < tripCurrentHealth)
+            {
+                tripCurrentHealth = tripMaxHealth; 
+            }
+            yield return new WaitForSeconds(1);
+        }
+
+        if (isKrisActive)
+        {
+            krisCurrentHealth += heal;
+            if (krisMaxHealth < krisCurrentHealth)
+            {
+                krisCurrentHealth = krisMaxHealth;
+            }
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    public void MakeAShield(int ss)
+    {
+        shieldStrength = ss;
+        currentShield += shieldStrength;
+    }
+    public IEnumerator Invunerability(float duration)
+    {
+        invulnerable = true;
+        yield return new WaitForSeconds(duration);
+        invulnerable = false;
     }
 
     public void ChangePC(string pCName)

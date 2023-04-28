@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EnemyHealthScript : MonoBehaviour
 {
-    public int maxHealth;
-    public int currentHealth;
+    public float maxHealth;
+    public float currentHealth;
 
 
     // Start is called before the first frame update
@@ -42,5 +42,10 @@ public class EnemyHealthScript : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         currentHealth -= dmg;
+    }
+
+    public void HalveHP()
+    {
+        currentHealth /= 2;
     }
 }
