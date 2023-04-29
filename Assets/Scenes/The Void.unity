@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2219,8 +2219,11 @@ MonoBehaviour:
   advancedSkillVeilCost: 0
   tuningSkillVeilCost: 0
   pinnacleSkillVeilCost: 0
+  krisSpear: {fileID: 7234322433884496385, guid: 38c8e3ac3130ff742a3ff4e1ba8834ee, type: 3}
+  krisSpearSpeed: 30
   crystalSpear: {fileID: 3784296737765459703, guid: 745e500cd7109534a9bc78954024432d, type: 3}
   crystalSpearSpeed: 50
+  hasCrystalSpearCharge: 0
 --- !u!4 &297634245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2844900485765990917, guid: 1add97e8f9bf41a4bbf68f38b26bd9a5, type: 3}
@@ -4736,7 +4739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 727.4795
+      value: 740.2655
       objectReference: {fileID: 0}
     - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
       propertyPath: m_LocalScale.y
@@ -4744,7 +4747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 12
+      value: 30.8846
       objectReference: {fileID: 0}
     - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4756,7 +4759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7134.27
+      value: 7125.2
       objectReference: {fileID: 0}
     - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6662,7 +6665,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697469130}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 9.22
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -6682,9 +6685,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e1676b194fe9a45a59e58e22679e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 60
+  speed: 20
   groundDrag: 4
-  jumpForce: 4000
+  jumpForce: 250
   jumpCooldown: 0.5
   airMultiplier: 1.5
   playerHeight: 8
@@ -11146,6 +11149,77 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1123086171
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6150390517246115794, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_Name
+      value: Void Moss (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 727.4795
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7.7898
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 16.1689
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2433.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3354.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7132.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908367970375107428, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
 --- !u!1001 &1124153799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12044,7 +12118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209528739}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.511, y: 7.232, z: 1.547}
+  m_LocalPosition: {x: -0.09, y: 7.63, z: 1.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13223,7 +13297,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &1423862123
 MonoBehaviour:
@@ -13238,8 +13312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 18
-  groundDrag: 4
-  jumpForce: 180
+  groundDrag: 2
+  jumpForce: 230
   jumpCooldown: 0.5
   airMultiplier: 1.5
   playerHeight: 5.333

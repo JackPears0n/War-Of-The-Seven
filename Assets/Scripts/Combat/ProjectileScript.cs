@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
 {
-    [Header("Target layers")]
-    public LayerMask enemyLayers;
-
     [Header("Ranged")]
     public Transform projectile;
     public Transform shootPoint;
-
-    [Header("Damage")]
-    public int projectileDamage;
+    public LayerMask collisions;
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Destroy(gameObject);
+            DestroyProj();
         }
+    }
+
+    IEnumerable DestroyProj()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 }

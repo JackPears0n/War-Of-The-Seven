@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -55,8 +57,15 @@ public class PlayerCombat : MonoBehaviour
     public float pinnacleSkillVeilCost;
 
     [Header("Projectile")]
+    public GameObject krisSpear;
+    public float krisSpearSpeed;
     public GameObject crystalSpear;
     public float crystalSpearSpeed;
+
+    [Header("Kris variables")]
+    private int maxCrystalSpearCharges = 3;
+    private int currentCrystalSpearCharges;
+    public bool hasCrystalSpearCharge;
 
 
     // Start is called before the first frame update
@@ -72,6 +81,7 @@ public class PlayerCombat : MonoBehaviour
         pinnacleSkillReady = true;
 
         voidPulses = false;
+        maxCrystalSpearCharges = 3;
     }
 
     // Update is called once per frame
@@ -129,7 +139,7 @@ public class PlayerCombat : MonoBehaviour
 
             // Cooldowns
             advancedSkillCool = 10;
-            tuningSkillCool = 5;
+            tuningSkillCool = 20;
             pinnacleSkillCool = 120;
 
             pinnacleDuration = 30;
@@ -215,14 +225,28 @@ public class PlayerCombat : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // Instanciates the spear gameobject
+            GameObject CreateSpear = Instantiate(krisSpear, krisAttackPoint.position, krisAttackPoint.rotation);
 
+            // Array for storing enemies
+            Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, basicSkillRange, enemyLayers);
+
+            // Makes spear move
+            CreateSpear.GetComponent<Rigidbody>().velocity = krisAttackPoint.transform.up * krisSpearSpeed;
+
+            // Damages the hit enemies
+            foreach (Collider enemy in hitEnemies)
+            {
+                print("We hit" + enemy.name);
+                enemy.GetComponent<EnemyHealthScript>().TakeDamage(basicSkillDmg);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && advancedSkillReady)
         {
             pHS.MakeAShield(50);
 
-            Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, advancedSkillRange, enemyLayers);
+            Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, advancedSkillRange, enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
             {
@@ -236,29 +260,43 @@ public class PlayerCombat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && tuningSkillReady)
         {
-            // Instanciates the spear gameobject
-            GameObject CreateSpear = Instantiate(crystalSpear, krisAttackPoint.position, krisAttackPoint.rotation);
-
-            // Array for storing enemies
-            Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, basicSkillRange, enemyLayers);
-
-            // Makes spear move
-            CreateSpear.GetComponent<Rigidbody>().velocity = krisAttackPoint.transform.up * crystalSpearSpeed;
-
-            // Damages the hit enemies
-            foreach (Collider enemy in hitEnemies)
+            
+            for (currentCrystalSpearCharges = maxCrystalSpearCharges; currentCrystalSpearCharges > 0; currentCrystalSpearCharges--)
             {
-                print("We hit" + enemy.name);
-                enemy.GetComponent<EnemyHealthScript>().TakeDamage(tuningSkillDmg);
+                // Instanciates the spear gameobject
+                GameObject CreateSpear = Instantiate(crystalSpear, krisAttackPoint.position, krisAttackPoint.rotation);
+
+                // Array for storing enemies
+                Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, tuningSkillRange, enemyLayers);
+
+                // Makes spear move
+                CreateSpear.GetComponent<Rigidbody>().velocity = krisAttackPoint.transform.up * crystalSpearSpeed;
+
+                // Damages the hit enemies
+                foreach (Collider enemy in hitEnemies)
+                {
+                    print("We hit" + enemy.name);
+                    enemy.GetComponent<EnemyHealthScript>().TakeDamage(tuningSkillDmg);
+                }
+
             }
+            
+
+            //StartCoroutine("CrystalStorm");
+
+            maxCrystalSpearCharges += 1;
+
+            tuningSkillReady = false;
+            Invoke(nameof(ResetCooldownT), tuningSkillCool);
         }
 
         if (Input.GetKeyDown(KeyCode.R) && pinnacleSkillReady)
         {
             pHS.Invunerability(pinnacleDuration);
-            while (pHS.invulnerable)
+
+            if (pHS.invulnerable)
             {
-                Invoke(nameof(pHS.Heal), 25);
+                Invoke(nameof(pHS.HoT), 25);
             }
 
             pinnacleSkillReady = false;
@@ -287,6 +325,26 @@ public class PlayerCombat : MonoBehaviour
         print("Pinnacle skill is ready");
     }
 
+    IEnumerable CrystalStorm()
+    {
+        // Instanciates the spear gameobject
+        GameObject CreateSpear = Instantiate(crystalSpear, krisAttackPoint.position, krisAttackPoint.rotation);
+
+        // Array for storing enemies
+        Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, tuningSkillRange, enemyLayers);
+
+        // Makes spear move
+        CreateSpear.GetComponent<Rigidbody>().velocity = krisAttackPoint.transform.up * crystalSpearSpeed;
+
+        // Damages the hit enemies
+        foreach (Collider enemy in hitEnemies)
+        {
+            print("We hit" + enemy.name);
+            enemy.GetComponent<EnemyHealthScript>().TakeDamage(tuningSkillDmg);
+        }
+
+        yield return new WaitForSeconds(1);
+    }
 
     private void OnDrawGizmosSelected()
     {

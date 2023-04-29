@@ -5,29 +5,26 @@ using UnityEngine;
 
 public class DestroyProjectileScript : MonoBehaviour
 {
-    public float lifetime;
-    public float maxlifetime;
-
-    void Update()
-    {
-        lifetime = Time.deltaTime;
-
-        if (lifetime >= maxlifetime)
-        {
-            Destroy(gameObject);
-        }
-    }
+    public LayerMask players;
+    public LayerMask destroy;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Kris")
+        if(collision.gameObject.layer == players)
         {
             return;
         }
         else
         {
-            Destroy(gameObject);
+            //StartCoroutine("DestroyProj");
+            //Destroy(gameObject);           
         }
 
+    }
+
+    IEnumerable DestroyProj()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 }
