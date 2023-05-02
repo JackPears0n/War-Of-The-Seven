@@ -37,7 +37,8 @@ public class PlayerCamScript : MonoBehaviour
 
 
         // Clamps the axis view between
-        xRotate = Mathf.Clamp(xRotate, -90, 90);
+        xRotate = Mathf.Clamp(xRotate, -80, 80);
+
 
 
         // Roate camera and its orientation
