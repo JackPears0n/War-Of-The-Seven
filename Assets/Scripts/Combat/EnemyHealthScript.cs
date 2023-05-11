@@ -23,6 +23,12 @@ public class EnemyHealthScript : MonoBehaviour
             maxHealth = 100;
             currentHealth = maxHealth;
         }
+
+        if (gameObject.tag == "Corrupted Crystal Construct")
+        {
+            maxHealth = 1000;
+            currentHealth = maxHealth;
+        }
     }
 
     // Update is called once per frame

@@ -11,6 +11,12 @@ public class ChangePlayerScript : MonoBehaviour
     public GameObject tripHolder;
     public GameObject krisHolder;
 
+    public GameObject tripObj;
+    public GameObject krisObj;
+
+    private Vector3 tripHolderPos;
+    private Vector3 krisHolderPos;
+
     private PlayerHealthScript pHS;
 
     // Start is called before the first frame update
@@ -30,6 +36,9 @@ public class ChangePlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        tripHolderPos = tripObj.transform.position;
+        krisHolderPos = krisObj.transform.position;
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeToTrip();
@@ -51,7 +60,7 @@ public class ChangePlayerScript : MonoBehaviour
             tripHolder.SetActive(true);
 
             // Moves Trip to where Kris was
-            tripHolder.transform.position = krisHolder.transform.position;
+            tripHolder.transform.position = krisHolderPos;
 
             // Deactivates Kris
             krisHolder.SetActive(false);
@@ -76,7 +85,7 @@ public class ChangePlayerScript : MonoBehaviour
             krisHolder.SetActive(true);   
             
             // Moves Kris to where Trip was
-            krisHolder.transform.position = tripHolder.transform.position;
+            krisHolder.transform.position = tripHolderPos;
 
             // Deactivates Trip
             pHS.isTripActive = false;

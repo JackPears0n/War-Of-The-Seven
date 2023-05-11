@@ -215,7 +215,7 @@ public class PlayerCombat : MonoBehaviour
         {
             voidPulses = true;
 
-            tuningSkillReady = false;
+            pinnacleSkillReady = false;
             Invoke(nameof(ResetCooldownP), pinnacleSkillCool);
         }
 
