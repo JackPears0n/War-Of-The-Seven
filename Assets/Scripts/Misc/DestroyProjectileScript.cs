@@ -17,7 +17,7 @@ public class DestroyProjectileScript : MonoBehaviour
         else
         {
             //StartCoroutine("DestroyProj");
-            //Destroy(gameObject);           
+            Destroy(gameObject);           
         }
 
     }

@@ -9,10 +9,11 @@ public class BossCombat : MonoBehaviour
 {
     public NavMeshAgent agent;
 
-    public Transform player;
+    private Transform player;
 
     public GameObject playerHealth;
     private PlayerHealthScript pHS;
+    private EnemyHealthScript eHS;
     public Transform AttkPnt;
 
     [Header("Layers")]
@@ -42,6 +43,10 @@ public class BossCombat : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         pHS = playerHealth.GetComponent<PlayerHealthScript>();
+        eHS = GetComponent<EnemyHealthScript>();
+
+        basicAttk = true;
+        advnAttk = true;
     }
 
     void Update()
@@ -106,21 +111,32 @@ public class BossCombat : MonoBehaviour
         }
     }
 
+    // Basic skill
     void CorruptClaws()
     {
+        basicAttk = false;
+
         // play attack anim
+
         pHS.LoseHealth(basicAttkDmg);
         basicAttkNum++;
         Invoke(nameof(ResetCooldownB), basicAttkCool);
     }
 
+    // Advanced Skill
     void CorruptFlash()
     {
+        advnAttk = false;
+
+        // play attack anim
+
         basicAttkNum = 0;
 
         pHS.LoseHealth(advnAttkDmg);
         Invoke(nameof(ResetCooldownA), advnAttkCool);
     }
+
+    // Reset cooldowns
     void ResetCooldownB()
     {
         basicAttk = true;
@@ -129,14 +145,16 @@ public class BossCombat : MonoBehaviour
 
     void ResetCooldownA()
     {
-
         advnAttk = true;
         print("Boss advn skill is ready");
     }
+
+    // Draw the skill ranges
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(AttkPnt.position, basicAttkRange);
         Gizmos.DrawWireSphere(AttkPnt.position, advnAttkRange);
+        Gizmos.DrawWireSphere(AttkPnt.position, fOV);
 
     }
 }

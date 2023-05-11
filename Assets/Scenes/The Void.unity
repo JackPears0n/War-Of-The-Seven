@@ -1099,7 +1099,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 150833219}
-  player: {fileID: 948575903}
   playerHealth: {fileID: 293684446}
   AttkPnt: {fileID: 150833218}
   whatIsGround:
@@ -1162,9 +1161,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!4 &157790499 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2844900485765990917, guid: 1add97e8f9bf41a4bbf68f38b26bd9a5, type: 3}
@@ -2507,35 +2506,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tripAttackPoint: {fileID: 870400995}
   krisAttackPoint: {fileID: 1209528740}
+  tripIsAlreadyActive: 0
+  krisIsAlreadyActive: 0
   enemyLayers:
     serializedVersion: 2
     m_Bits: 1536
-  basicSkillDmg: 0
-  advancedSkillDmg: 0
-  tuningSkillDmg: 0
-  pinnacleSkillDmg: 0
-  basicSkillRange: 0
-  advancedSkillRange: 0
-  tuningSkillRange: 0
-  pinnacleSkillRange: 0
-  advancedSkillCool: 0
-  tuningSkillCool: 0
-  pinnacleSkillCool: 0
-  advancedSkillReady: 0
-  tuningSkillReady: 0
-  pinnacleSkillReady: 0
-  pinnacleDuration: 0
+  tripbasicSkillDmg: 0
+  tripadvancedSkillDmg: 0
+  triptuningSkillDmg: 0
+  trippinnacleSkillDmg: 0
+  tripDamage: 00000000000000000000000000000000
+  krisbasicSkillDmg: 0
+  krisadvancedSkillDmg: 0
+  kristuningSkillDmg: 0
+  krispinnacleSkillDmg: 0
+  tripbasicSkillRange: 0
+  tripadvancedSkillRange: 0
+  triptuningSkillRange: 0
+  trippinnacleSkillRange: 0
+  krisbasicSkillRange: 0
+  krisadvancedSkillRange: 0
+  kristuningSkillRange: 0
+  krispinnacleSkillRange: 0
+  tripadvancedSkillCool: 0
+  triptuningSkillCool: 0
+  trippinnacleSkillCool: 0
+  tripadvancedSkillReady: 0
+  triptuningSkillReady: 0
+  trippinnacleSkillReady: 0
+  trippinnacleDuration: 0
   voidPulses: 0
-  stamina: 0
-  basicSkillStamCost: 0
-  advancedSkillStamCost: 0
-  tuningSkillStamCost: 0
-  pinnacleSkillStamCost: 0
-  veil: 0
-  basicSkillVeilCost: 0
-  advancedSkillVeilCost: 0
-  tuningSkillVeilCost: 0
-  pinnacleSkillVeilCost: 0
+  krisadvancedSkillCool: 0
+  kristuningSkillCool: 0
+  krispinnacleSkillCool: 0
+  krisadvancedSkillReady: 0
+  kristuningSkillReady: 0
+  krispinnacleSkillReady: 0
+  krispinnacleDuration: 0
   krisSpear: {fileID: 7234322433884496385, guid: 38c8e3ac3130ff742a3ff4e1ba8834ee, type: 3}
   krisSpearSpeed: 30
   crystalSpear: {fileID: 3784296737765459703, guid: 745e500cd7109534a9bc78954024432d, type: 3}
@@ -17095,7 +17102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1694652733}
-  player: {fileID: 948575903}
   playerHealth: {fileID: 293684446}
   AttkPnt: {fileID: 0}
   whatIsGround:

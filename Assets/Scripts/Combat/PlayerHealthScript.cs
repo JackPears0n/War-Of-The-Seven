@@ -145,9 +145,14 @@ public class PlayerHealthScript : MonoBehaviour
 
     void UpdateHPSlider(int currentHealth)
     {
-        sliderValueHP.value = currentHealth;
+        sliderValueHP.value = currentHealth; 
+        if (isTripActive)
+        {
+            sliderValueHP.maxValue = tripMaxHealth;
+        }
         SaveHP();
     }
+
     void UpdateSheildSlider(int ss)
     {
         sliderValueShield.value = ss;
@@ -235,13 +240,18 @@ public class PlayerHealthScript : MonoBehaviour
         shieldStrength = ss;
         currentShield += shieldStrength;
     }
-    public IEnumerator Invunerability(float duration)
+    public void Invunerability(float duration)
     {
         invulnerable = true;
-        yield return new WaitForSeconds(duration);
-        invulnerable = false;
+        Invoke(nameof(EndInvunerability), duration);
+       
     }
 
+    public void EndInvunerability()
+    {
+        print("Invunerability is off");
+        invulnerable = false;
+    }
     public void ChangePC(string pCName)
     {
         if (isTripActive && isKrisDead == false)

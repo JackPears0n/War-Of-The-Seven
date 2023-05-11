@@ -16,33 +16,54 @@ public class PlayerCombat : MonoBehaviour
     public Transform tripAttackPoint;
     public Transform krisAttackPoint;
 
+    public bool tripIsAlreadyActive;
+    public bool krisIsAlreadyActive;
+
     [Header("Layers")]
     public LayerMask enemyLayers;
 
     [Header("Damage Variables")]
-    public int basicSkillDmg;
-    public int advancedSkillDmg;
-    public int tuningSkillDmg;
-    public int pinnacleSkillDmg;
+    public int tripbasicSkillDmg;
+    public int tripadvancedSkillDmg;
+    public int triptuningSkillDmg;
+    public int trippinnacleSkillDmg;
+    public int[] tripDamage;
+
+    public int krisbasicSkillDmg;
+    public int krisadvancedSkillDmg;
+    public int kristuningSkillDmg;
+    public int krispinnacleSkillDmg;
 
     [Header("Attack Range Variables")]
-    public int basicSkillRange;
-    public int advancedSkillRange;
-    public int tuningSkillRange;
-    public int pinnacleSkillRange;
+    public int tripbasicSkillRange;
+    public int tripadvancedSkillRange;
+    public int triptuningSkillRange;
+    public int trippinnacleSkillRange;
+
+    public int krisbasicSkillRange;
+    public int krisadvancedSkillRange;
+    public int kristuningSkillRange;
+    public int krispinnacleSkillRange;
 
     [Header("Cooldown Variables")]
-    public float advancedSkillCool;
-    public float tuningSkillCool;
-    public float pinnacleSkillCool;
-    public bool advancedSkillReady;
-    public bool tuningSkillReady;
-    public bool pinnacleSkillReady;
-
-    public float pinnacleDuration;
+    public float tripadvancedSkillCool;
+    public float triptuningSkillCool;
+    public float trippinnacleSkillCool;
+    public bool tripadvancedSkillReady;
+    public bool triptuningSkillReady;
+    public bool trippinnacleSkillReady;
+    public float trippinnacleDuration;
     public bool voidPulses;
 
-    [Header("Stamina Variables")]
+    public float krisadvancedSkillCool;
+    public float kristuningSkillCool;
+    public float krispinnacleSkillCool;
+    public bool krisadvancedSkillReady;
+    public bool kristuningSkillReady;
+    public bool krispinnacleSkillReady;
+    public float krispinnacleDuration;
+
+    /*    [Header("Stamina Variables")]
     public float stamina;
     public float basicSkillStamCost;
     public float advancedSkillStamCost;
@@ -55,6 +76,7 @@ public class PlayerCombat : MonoBehaviour
     public float advancedSkillVeilCost;
     public float tuningSkillVeilCost;
     public float pinnacleSkillVeilCost;
+    */
 
     [Header("Projectile")]
     public GameObject krisSpear;
@@ -76,80 +98,34 @@ public class PlayerCombat : MonoBehaviour
 
         drawGizmos = false;
 
-        advancedSkillReady = true;
-        tuningSkillReady = true;
-        pinnacleSkillReady = true;
+        tripadvancedSkillReady = true;
+        triptuningSkillReady = true;
+        trippinnacleSkillReady = true;
+
+        krisadvancedSkillReady = true;
+        kristuningSkillReady = true;
+        krispinnacleSkillReady = true;
 
         voidPulses = false;
         maxCrystalSpearCharges = 3;
+        SetBaseSkillStats();
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckState();
-
     }
 
     void CheckState()
     {
         if (pHS.isTripActive)
         {
-            // Damage
-            basicSkillDmg = 5;
-            advancedSkillDmg = 15;
-            tuningSkillDmg = 0;
-            pinnacleSkillDmg = 40;
-
-            // Range
-            basicSkillRange = 10;
-            advancedSkillRange = 1;
-            tuningSkillRange = 100;
-            pinnacleSkillRange = 1;
-
-            // Cooldowns
-            advancedSkillCool = 2;
-            tuningSkillCool = 30;
-            pinnacleSkillCool = 120;
-
-            pinnacleDuration = 30;
-
-            // Stamina costs
-            basicSkillStamCost = 5;
-            advancedSkillStamCost = 10;
-            tuningSkillStamCost = 0;
-            pinnacleSkillStamCost = 20;
-
             TripAttacks();
         }
 
         if (pHS.isKrisActive)
         {
-            // Damage
-            basicSkillDmg = 5;
-            advancedSkillDmg = 30;
-            tuningSkillDmg = 10;
-            pinnacleSkillDmg = 0;
-
-            // Range
-            basicSkillRange = 100;
-            advancedSkillRange = 10;
-            tuningSkillRange = 100;
-            pinnacleSkillRange = 0;
-
-            // Cooldowns
-            advancedSkillCool = 10;
-            tuningSkillCool = 20;
-            pinnacleSkillCool = 120;
-
-            pinnacleDuration = 30;
-
-            // Stamina costs
-            basicSkillStamCost = 5;
-            advancedSkillStamCost = 10;
-            tuningSkillStamCost = 0;
-            pinnacleSkillStamCost = 20;
-
             KrisAttacks();
         }
     }
@@ -159,68 +135,69 @@ public class PlayerCombat : MonoBehaviour
         // Basic
         if (Input.GetMouseButtonDown(0) && !voidPulses)
         {
-            Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, basicSkillRange, enemyLayers);
+            Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripbasicSkillRange, enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
             {
-                print("We hit" + enemy.name);
-                enemy.GetComponent<EnemyHealthScript>().TakeDamage(basicSkillDmg);
+                //print("We hit" + enemy.name);
+                enemy.GetComponent<EnemyHealthScript>().TakeDamage(tripbasicSkillDmg);
             }
         }
 
         // Void Pulses Basic
         if (Input.GetMouseButtonDown(0) && voidPulses)
         {
-            Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, basicSkillRange, enemyLayers);
+            Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripbasicSkillRange, enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
             {
-                print("We hit" + enemy.name);
-                enemy.GetComponent<EnemyHealthScript>().TakeDamage(pinnacleSkillDmg);
+                //print("We hit" + enemy.name);
+                enemy.GetComponent<EnemyHealthScript>().TakeDamage(trippinnacleSkillDmg);
             }
         }
 
         // Advanced
-        if (Input.GetKeyDown(KeyCode.Q) && advancedSkillReady)
+        if (Input.GetKeyDown(KeyCode.Q) && tripadvancedSkillReady)
         {
-            Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, advancedSkillRange, enemyLayers);
+            Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripadvancedSkillRange, enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
             {
-                print("We hit" + enemy.name);
-                enemy.GetComponent<EnemyHealthScript>().TakeDamage(advancedSkillDmg);
+                //print("We hit" + enemy.name);
+                enemy.GetComponent<EnemyHealthScript>().TakeDamage(tripadvancedSkillDmg);
             }
 
-            advancedSkillReady = false;
-            Invoke(nameof(ResetCooldownA), advancedSkillCool);
+            tripadvancedSkillReady = false;
+            Invoke(nameof(ResetCooldownAt), tripadvancedSkillCool);
         }
 
         // Tuning
-        if (Input.GetKeyDown(KeyCode.E) && tuningSkillReady)
+        if (Input.GetKeyDown(KeyCode.E) && triptuningSkillReady)
         {
-            Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, basicSkillRange, enemyLayers);
+            Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripbasicSkillRange, enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
             {
-                print("We hit" + enemy.name);
+                //print("We hit" + enemy.name);
                 enemy.GetComponent<EnemyHealthScript>().HalveHP();
             }
 
-            tuningSkillReady = false;
-            Invoke(nameof(ResetCooldownT), tuningSkillCool);
+            triptuningSkillReady = false;
+            Invoke(nameof(ResetCooldownTt), triptuningSkillCool);
         }
 
         // Pinnacle
-        if (Input.GetKeyDown(KeyCode.R) && pinnacleSkillReady)
+        if (Input.GetKeyDown(KeyCode.R) && trippinnacleSkillReady)
         {
             voidPulses = true;
 
-            pinnacleSkillReady = false;
-            Invoke(nameof(ResetCooldownP), pinnacleSkillCool);
+            trippinnacleSkillReady = false;
+            Invoke(nameof(ResetCooldownPt), trippinnacleSkillCool);
         }
 
     }
 
+    
     void KrisAttacks()
     {
         if (Input.GetMouseButtonDown(0))
@@ -229,7 +206,7 @@ public class PlayerCombat : MonoBehaviour
             GameObject CreateSpear = Instantiate(krisSpear, krisAttackPoint.position, krisAttackPoint.rotation);
 
             // Array for storing enemies
-            Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, basicSkillRange, enemyLayers);
+            Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, krisbasicSkillRange, enemyLayers);
 
             // Makes spear move
             CreateSpear.GetComponent<Rigidbody>().velocity = krisAttackPoint.transform.up * krisSpearSpeed;
@@ -238,27 +215,27 @@ public class PlayerCombat : MonoBehaviour
             foreach (Collider enemy in hitEnemies)
             {
                 print("We hit" + enemy.name);
-                enemy.GetComponent<EnemyHealthScript>().TakeDamage(basicSkillDmg);
+                enemy.GetComponent<EnemyHealthScript>().TakeDamage(krisbasicSkillDmg);
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && advancedSkillReady)
+        if (Input.GetKeyDown(KeyCode.Q) && krisadvancedSkillReady)
         {
             pHS.MakeAShield(50);
 
-            Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, advancedSkillRange, enemyLayers);
+            Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, krisadvancedSkillRange, enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
             {
                 print("We hit" + enemy.name);
-                enemy.GetComponent<EnemyHealthScript>().TakeDamage(advancedSkillDmg);
+                enemy.GetComponent<EnemyHealthScript>().TakeDamage(krisadvancedSkillDmg);
             }
 
-            advancedSkillReady = false;
-            Invoke(nameof(ResetCooldownA), advancedSkillCool);
+            krisadvancedSkillReady = false;
+            Invoke(nameof(ResetCooldownAk), krisadvancedSkillCool);
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && tuningSkillReady)
+        if (Input.GetKeyDown(KeyCode.E) && kristuningSkillReady)
         {
             
             for (currentCrystalSpearCharges = maxCrystalSpearCharges; currentCrystalSpearCharges > 0; currentCrystalSpearCharges--)
@@ -267,7 +244,7 @@ public class PlayerCombat : MonoBehaviour
                 GameObject CreateSpear = Instantiate(crystalSpear, krisAttackPoint.position, krisAttackPoint.rotation);
 
                 // Array for storing enemies
-                Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, tuningSkillRange, enemyLayers);
+                Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, kristuningSkillRange, enemyLayers);
 
                 // Makes spear move
                 CreateSpear.GetComponent<Rigidbody>().velocity = krisAttackPoint.transform.up * crystalSpearSpeed;
@@ -276,9 +253,8 @@ public class PlayerCombat : MonoBehaviour
                 foreach (Collider enemy in hitEnemies)
                 {
                     print("We hit" + enemy.name);
-                    enemy.GetComponent<EnemyHealthScript>().TakeDamage(tuningSkillDmg);
+                    enemy.GetComponent<EnemyHealthScript>().TakeDamage(kristuningSkillDmg);
                 }
-
             }
             
 
@@ -286,64 +262,69 @@ public class PlayerCombat : MonoBehaviour
 
             maxCrystalSpearCharges += 1;
 
-            tuningSkillReady = false;
-            Invoke(nameof(ResetCooldownT), tuningSkillCool);
+            kristuningSkillReady = false;
+            Invoke(nameof(ResetCooldownTk), kristuningSkillCool);
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && pinnacleSkillReady)
+        if (Input.GetKeyDown(KeyCode.R) && krispinnacleSkillReady)
         {
-            pHS.Invunerability(pinnacleDuration);
+            pHS.Invunerability(krispinnacleDuration);
 
             if (pHS.invulnerable)
             {
-                Invoke(nameof(pHS.HoT), 25);
+                for (int i = 5; i > 0; i--)
+                {
+                    pHS.Heal(10);
+                }
+                
             }
 
-            pinnacleSkillReady = false;
-            Invoke(nameof(ResetCooldownP), pinnacleSkillCool);
+            krispinnacleSkillReady = false;
+            Invoke(nameof(ResetCooldownPk), krispinnacleSkillCool);
         }
     }
-
-    void ResetCooldownA()
+    
+    // Cooldown resets
+    void ResetCooldownAt()
     {
-        advancedSkillReady = true;
+        tripadvancedSkillReady = true;
         print("Advanced skill is ready");
     }
 
-    void ResetCooldownT()
+    void ResetCooldownTt()
     {
 
-        tuningSkillReady = true;
+        triptuningSkillReady = true;
         print("Tuning skill is ready");
     }
 
-    void ResetCooldownP()
+    void ResetCooldownPt()
     {
         voidPulses = false;
 
-        pinnacleSkillReady = true;
+        trippinnacleSkillReady = true;
         print("Pinnacle skill is ready");
     }
 
-    IEnumerable CrystalStorm()
+    void ResetCooldownAk()
     {
-        // Instanciates the spear gameobject
-        GameObject CreateSpear = Instantiate(crystalSpear, krisAttackPoint.position, krisAttackPoint.rotation);
+        krisadvancedSkillReady = true;
+        print("Advanced skill is ready");
+    }
 
-        // Array for storing enemies
-        Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, tuningSkillRange, enemyLayers);
+    void ResetCooldownTk()
+    {
 
-        // Makes spear move
-        CreateSpear.GetComponent<Rigidbody>().velocity = krisAttackPoint.transform.up * crystalSpearSpeed;
+        kristuningSkillReady = true;
+        print("Tuning skill is ready");
+    }
 
-        // Damages the hit enemies
-        foreach (Collider enemy in hitEnemies)
-        {
-            print("We hit" + enemy.name);
-            enemy.GetComponent<EnemyHealthScript>().TakeDamage(tuningSkillDmg);
-        }
+    void ResetCooldownPk()
+    {
+        voidPulses = false;
 
-        yield return new WaitForSeconds(1);
+        krispinnacleSkillReady = true;
+        print("Pinnacle skill is ready");
     }
 
     private void OnDrawGizmosSelected()
@@ -359,19 +340,81 @@ public class PlayerCombat : MonoBehaviour
 
         if(tripAttackPoint)
         {
-            Gizmos.DrawWireSphere(tripAttackPoint.position, basicSkillRange);
-            Gizmos.DrawWireSphere(tripAttackPoint.position, advancedSkillRange);
-            Gizmos.DrawWireSphere(tripAttackPoint.position, tuningSkillRange);
-            Gizmos.DrawWireSphere(tripAttackPoint.position, pinnacleSkillRange);
+            Gizmos.DrawWireSphere(tripAttackPoint.position, tripbasicSkillRange);
+            Gizmos.DrawWireSphere(tripAttackPoint.position, tripadvancedSkillRange);
+            Gizmos.DrawWireSphere(tripAttackPoint.position, triptuningSkillRange);
+            Gizmos.DrawWireSphere(tripAttackPoint.position, trippinnacleSkillRange);
         }
 
         if (krisAttackPoint)
         {
-            Gizmos.DrawWireSphere(krisAttackPoint.position, basicSkillRange);
-            Gizmos.DrawWireSphere(krisAttackPoint.position, advancedSkillRange);
-            Gizmos.DrawWireSphere(krisAttackPoint.position, tuningSkillRange);
-            Gizmos.DrawWireSphere(krisAttackPoint.position, pinnacleSkillRange);
+            Gizmos.DrawWireSphere(krisAttackPoint.position, krisbasicSkillRange);
+            Gizmos.DrawWireSphere(krisAttackPoint.position, krisadvancedSkillRange);
+            Gizmos.DrawWireSphere(krisAttackPoint.position, kristuningSkillRange);
+            Gizmos.DrawWireSphere(krisAttackPoint.position, krispinnacleSkillRange);
         }
 
+    }
+
+    void SetBaseSkillStats()
+    {
+        //-----------------
+        // Trip
+        //-----------------
+
+        // Damage
+        tripbasicSkillDmg = 5;
+        tripadvancedSkillDmg = 15;
+        triptuningSkillDmg = 0;
+        trippinnacleSkillDmg = 40;
+
+        // Range
+        tripbasicSkillRange = 10;
+        tripadvancedSkillRange = 1;
+        triptuningSkillRange = 100;
+        trippinnacleSkillRange = 1;
+
+        // Cooldowns
+        tripadvancedSkillCool = 2;
+        triptuningSkillCool = 30;
+        trippinnacleSkillCool = 120;
+
+        trippinnacleDuration = 30;
+        /*
+        // Stamina costs
+        tripbasicSkillStamCost = 5;
+        tripadvancedSkillStamCost = 10;
+        triptuningSkillStamCost = 0;
+        trippinnacleSkillStamCost = 20;
+        */
+        //-----------------
+        // Kris
+        //-----------------
+
+        // Damage
+        krisbasicSkillDmg = 5;
+        krisadvancedSkillDmg = 30;
+        kristuningSkillDmg = 10;
+        krispinnacleSkillDmg = 0;
+
+        // Range
+        krisbasicSkillRange = 100;
+        krisadvancedSkillRange = 10;
+        kristuningSkillRange = 100;
+        krispinnacleSkillRange = 0;
+
+        // Cooldowns
+        krisadvancedSkillCool = 10;
+        kristuningSkillCool = 20;
+        krispinnacleSkillCool = 120;
+
+        krispinnacleDuration = 30;
+        /*
+        // Stamina costs
+        krisbasicSkillStamCost = 5;
+        krisadvancedSkillStamCost = 10;
+        kristuningSkillStamCost = 0;
+        krispinnacleSkillStamCost = 20;
+        */
     }
 }
