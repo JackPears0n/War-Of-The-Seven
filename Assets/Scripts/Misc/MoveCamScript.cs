@@ -5,7 +5,11 @@ using UnityEngine;
 public class MoveCamScript : MonoBehaviour
 {
     public Transform camPos;
+   
+    void Start()
+    {
 
+    }
     // Update is called once per frame
     void Update()
     {

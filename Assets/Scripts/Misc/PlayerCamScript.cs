@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class PlayerCamScript : MonoBehaviour
 {
+    private PlayerHealthScript pHS;
+
     // Mouse sensativity
     public float xSens;
     public float ySens;
 
     public Transform camOrientation;
+    public Transform tripOrientation;
+    public Transform krisOrientation;
+
     public GameObject characterBody;
+    public GameObject tripBody;
+    public GameObject krisBody;
 
     // Camera rotation
     float xRotate;
@@ -23,11 +30,22 @@ public class PlayerCamScript : MonoBehaviour
 
         // Makes cursor incisible
         Cursor.visible = false;
+
+        pHS = GetComponent<PlayerHealthScript>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (pHS.isTripActive)
+        {
+            camOrientation.rotation = tripOrientation.rotation;
+        }
+        if (pHS.isKrisActive)
+        {
+            camOrientation.rotation = krisOrientation.rotation;
+        }
         // Getting the mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * xSens;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * ySens;

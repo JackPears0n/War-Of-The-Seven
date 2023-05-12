@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
 {
     States state;
 
+    private PlayerHealthScript pHS;
+
     [Header("Movement")]
     public float speed;
     public float groundDrag;
@@ -27,7 +29,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
 
-    public Transform orientation;
+    public Transform tripOrientation;
+    public Transform krisOrientation;
+
 
     float xInput;
     float yInput;
@@ -41,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     {
         state = States.Idle;
 
+        pHS = GetComponent<PlayerHealthScript>();
+
         // Gets the rigidbody and stops it rotating
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -52,14 +58,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = orientation.rotation;
+        // Orientation
+        if (pHS.isTripActive)
+        {
+            transform.rotation = tripOrientation.rotation;
+        }
+        if (pHS.isKrisActive)
+        {
+            transform.rotation = krisOrientation.rotation;
+        }
 
+        // Movement logic
         DoLogic();
-    }
-
-    private void FixedUpdate()
-    {
-        
     }
 
     //-------------------
@@ -216,7 +226,15 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         // Calculate the movement direction
-        moveDirect = orientation.forward * yInput + orientation.right * xInput;
+        
+        if (pHS.isTripActive)
+        {
+            moveDirect = tripOrientation.forward * yInput + tripOrientation.right * xInput;
+        }
+        if (pHS.isKrisActive)
+        {
+            moveDirect = krisOrientation.forward * yInput + krisOrientation.right * xInput;
+        }
 
         //Checks if player is on the ground
         // Is grounded
@@ -239,7 +257,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.drag = groundDrag + 2;
+            rb.drag = 0;
         }
     }
 
