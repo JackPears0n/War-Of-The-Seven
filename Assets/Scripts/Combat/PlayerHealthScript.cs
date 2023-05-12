@@ -161,6 +161,7 @@ public class PlayerHealthScript : MonoBehaviour
 
     void UpdateSheildSlider(int ss)
     {
+        sliderValueShield.maxValue = krisMaxHealth;
         sliderValueShield.value = ss;
     }
 
@@ -243,8 +244,13 @@ public class PlayerHealthScript : MonoBehaviour
 
     public void MakeAShield(int ss)
     {
+
         shieldStrength = ss;
         currentShield += shieldStrength;
+        if (currentShield > krisMaxHealth)
+        {
+            currentShield = krisMaxHealth;
+        }
     }
     public void Invunerability(float duration)
     {
@@ -258,6 +264,7 @@ public class PlayerHealthScript : MonoBehaviour
         print("Invunerability is off");
         invulnerable = false;
     }
+
     public void ChangePC(string pCName)
     {
         if (isTripActive && isKrisDead == false)
@@ -279,6 +286,15 @@ public class PlayerHealthScript : MonoBehaviour
         if (isTripDead && isKrisDead)
         {
             state = States.Dead;
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Death")
+        {
+            state = States.Dead;
+            Die();
         }
     }
 }

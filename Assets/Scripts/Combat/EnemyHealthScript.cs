@@ -20,7 +20,7 @@ public class EnemyHealthScript : MonoBehaviour
 
         if (gameObject.tag == "Void Crawler")
         {
-            maxHealth = 100;
+            maxHealth = 200;
             currentHealth = maxHealth;
         }
 

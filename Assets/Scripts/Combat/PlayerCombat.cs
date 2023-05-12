@@ -175,7 +175,6 @@ public class PlayerCombat : MonoBehaviour
         }
 
     }
-
     
     void KrisAttacks()
     {
@@ -388,7 +387,7 @@ public class PlayerCombat : MonoBehaviour
         krisCooldowns[2] = 20;
         krisCooldowns[3] = 120;
 
-        krispinnacleDuration = 30;
+        krispinnacleDuration = 5;
         /*
         // Stamina costs
         krisbasicSkillStamCost = 5;
