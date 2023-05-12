@@ -11,12 +11,12 @@ public class PlayerCamScript : MonoBehaviour
     public float ySens;
 
     public Transform camOrientation;
-    public Transform tripOrientation;
-    public Transform krisOrientation;
+    //public Transform tripOrientation;
+    //public Transform krisOrientation;
 
     public GameObject characterBody;
-    public GameObject tripBody;
-    public GameObject krisBody;
+    //public GameObject tripBody;
+    //public GameObject krisBody;
 
     // Camera rotation
     float xRotate;
@@ -38,6 +38,7 @@ public class PlayerCamScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (pHS.isTripActive)
         {
             camOrientation.rotation = tripOrientation.rotation;
@@ -46,6 +47,10 @@ public class PlayerCamScript : MonoBehaviour
         {
             camOrientation.rotation = krisOrientation.rotation;
         }
+        */
+
+        transform.rotation = camOrientation.rotation;
+
         // Getting the mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * xSens;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * ySens;

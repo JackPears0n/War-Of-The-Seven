@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     States state;
 
     private PlayerHealthScript pHS;
+    public GameObject pCS;
 
     [Header("Movement")]
     public float speed;
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     private bool readyToJump;
     public float jumpCooldown = 1;
-    public float airMultiplier = 1.5f;
+    public float airMultiplier = 1.1f;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -29,8 +30,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
 
-    public Transform tripOrientation;
-    public Transform krisOrientation;
+    public Transform orientation;
+
 
 
     float xInput;
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     {
         state = States.Idle;
 
-        pHS = GetComponent<PlayerHealthScript>();
+        pHS = pCS.GetComponent<PlayerHealthScript>();
 
         // Gets the rigidbody and stops it rotating
         rb = GetComponent<Rigidbody>();
@@ -59,14 +60,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Orientation
-        if (pHS.isTripActive)
-        {
-            transform.rotation = tripOrientation.rotation;
-        }
-        if (pHS.isKrisActive)
-        {
-            transform.rotation = krisOrientation.rotation;
-        }
+        transform.rotation = orientation.rotation;
 
         // Movement logic
         DoLogic();
@@ -226,15 +220,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         // Calculate the movement direction
-        
-        if (pHS.isTripActive)
-        {
-            moveDirect = tripOrientation.forward * yInput + tripOrientation.right * xInput;
-        }
-        if (pHS.isKrisActive)
-        {
-            moveDirect = krisOrientation.forward * yInput + krisOrientation.right * xInput;
-        }
+        moveDirect = orientation.forward * yInput + orientation.right * xInput;       
 
         //Checks if player is on the ground
         // Is grounded

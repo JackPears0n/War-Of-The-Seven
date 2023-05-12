@@ -99,7 +99,7 @@ public class BossCombat : MonoBehaviour
         {
             // Attack method here
             CorruptClaws();
-            print("Basic attack");
+            print("Corrupt Claws hit");
         }
 
         // advanced attack
@@ -107,7 +107,7 @@ public class BossCombat : MonoBehaviour
         {
             // Attack method here
             CorruptFlash();
-            print("Advn attack");
+            print("Corrupt Flash hit");
         }
     }
 

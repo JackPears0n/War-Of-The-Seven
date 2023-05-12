@@ -7,15 +7,8 @@ public class ChangePlayerScript : MonoBehaviour
 {
     States state;
 
-    [Header("Character holders")]
-    public GameObject tripHolder;
-    public GameObject krisHolder;
-
     public GameObject tripObj;
     public GameObject krisObj;
-
-    private Vector3 tripHolderPos;
-    private Vector3 krisHolderPos;
 
     private PlayerHealthScript pHS;
 
@@ -25,10 +18,10 @@ public class ChangePlayerScript : MonoBehaviour
         pHS = GetComponent<PlayerHealthScript>();
 
         pHS.isKrisActive = false;
-        krisHolder.SetActive(false);
+        krisObj.SetActive(false);
 
         pHS.isTripActive = true;
-        tripHolder.SetActive(true);
+        tripObj.SetActive(true);
 
         
     }
@@ -36,8 +29,6 @@ public class ChangePlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tripHolderPos = tripObj.transform.position;
-        krisHolderPos = krisObj.transform.position;
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -57,13 +48,10 @@ public class ChangePlayerScript : MonoBehaviour
         {            
             // Activates the Trip object and makes it the current player
             pHS.isTripActive = true;
-            tripHolder.SetActive(true);
-
-            // Moves Trip to where Kris was
-            tripHolder.transform.position = krisHolderPos;
+            tripObj.SetActive(true);
 
             // Deactivates Kris
-            krisHolder.SetActive(false);
+            krisObj.SetActive(false);
             pHS.isKrisActive = false;
 
             // Makses the state idle
@@ -82,14 +70,11 @@ public class ChangePlayerScript : MonoBehaviour
         {       
             // Activates the Kris object and makes it the current player
             pHS.isKrisActive = true;
-            krisHolder.SetActive(true);   
-            
-            // Moves Kris to where Trip was
-            krisHolder.transform.position = tripHolderPos;
+            krisObj.SetActive(true);   
 
             // Deactivates Trip
             pHS.isTripActive = false;
-            tripHolder.SetActive(false);
+            tripObj.SetActive(false);
 
             // Makses the state idle
             state = States.Idle;

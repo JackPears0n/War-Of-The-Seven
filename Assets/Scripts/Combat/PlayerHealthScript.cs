@@ -99,7 +99,7 @@ public class PlayerHealthScript : MonoBehaviour
             else
             {
                 isTripDead = false;
-                SaveHP();
+                UpdateHPSlider(tripCurrentHealth);
             }
         }
 
@@ -113,7 +113,7 @@ public class PlayerHealthScript : MonoBehaviour
             else
             {
                 isKrisDead = false;
-                SaveHP();
+                UpdateHPSlider(krisCurrentHealth);
             }
         }
         
@@ -149,8 +149,14 @@ public class PlayerHealthScript : MonoBehaviour
         if (isTripActive)
         {
             sliderValueHP.maxValue = tripMaxHealth;
+            SaveHP();
         }
-        SaveHP();
+
+        if (isKrisActive)
+        {
+            sliderValueHP.maxValue = krisMaxHealth;
+            SaveHP();
+        }       
     }
 
     void UpdateSheildSlider(int ss)
