@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class PlayerCamScript : MonoBehaviour
 {
-    private PlayerHealthScript pHS;
-
     // Mouse sensativity
     public float xSens;
     public float ySens;
 
     public Transform camOrientation;
-    //public Transform tripOrientation;
-    //public Transform krisOrientation;
 
     public GameObject characterBody;
-    //public GameObject tripBody;
-    //public GameObject krisBody;
 
     // Camera rotation
     float xRotate;
@@ -31,41 +25,45 @@ public class PlayerCamScript : MonoBehaviour
         // Makes cursor incisible
         Cursor.visible = false;
 
-        pHS = GetComponent<PlayerHealthScript>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (pHS.isTripActive)
+
+        if (Input.GetKey(KeyCode.LeftAlt))
         {
-            camOrientation.rotation = tripOrientation.rotation;
+            // Locks the cursor in place
+            Cursor.lockState = CursorLockMode.None;
+
+            // Makes cursor incisible
+            Cursor.visible = true;
         }
-        if (pHS.isKrisActive)
+        else
         {
-            camOrientation.rotation = krisOrientation.rotation;
+            // Locks the cursor in place
+            Cursor.lockState = CursorLockMode.Locked;
+
+            // Makes cursor incisible
+            Cursor.visible = false;
+
+            transform.rotation = camOrientation.rotation;
+
+            // Getting the mouse input
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * xSens;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * ySens;
+
+            yRotate += mouseX;
+            xRotate -= mouseY;
+
+
+            // Clamps the axis view between
+            xRotate = Mathf.Clamp(xRotate, -80, 80);
+
+            // Roate camera and its orientation
+            transform.rotation = Quaternion.Euler(xRotate, yRotate, 0);
+            camOrientation.rotation = Quaternion.Euler(0, yRotate, 0);
         }
-        */
 
-        transform.rotation = camOrientation.rotation;
-
-        // Getting the mouse input
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * xSens;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * ySens;
-
-        yRotate += mouseX;
-        xRotate -= mouseY;
-
-
-        // Clamps the axis view between
-        xRotate = Mathf.Clamp(xRotate, -80, 80);
-
-
-
-        // Roate camera and its orientation
-        transform.rotation = Quaternion.Euler(xRotate, yRotate, 0);
-        camOrientation.rotation = Quaternion.Euler(0, yRotate, 0);
     }
 }

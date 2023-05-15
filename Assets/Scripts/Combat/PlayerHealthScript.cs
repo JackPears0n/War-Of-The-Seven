@@ -31,6 +31,8 @@ public class PlayerHealthScript : MonoBehaviour
     [Header("Health values")]
     public int tripCurrentHealth;
     public int krisCurrentHealth;
+    public int tripCurrentMaxHealth;
+    public int krisCurrentMaxHealth;
     public int tripMaxHealth;
     public int krisMaxHealth;
 
@@ -64,7 +66,7 @@ public class PlayerHealthScript : MonoBehaviour
                 LoadHP();
             }
         }
-
+        tripCurrentMaxHealth = tripMaxHealth;
 
         if (isKrisActive)
         {
@@ -78,7 +80,7 @@ public class PlayerHealthScript : MonoBehaviour
                 LoadHP();
             }
         }
-
+        krisCurrentMaxHealth = krisMaxHealth;
     }
 
     void Update()
@@ -148,13 +150,13 @@ public class PlayerHealthScript : MonoBehaviour
         sliderValueHP.value = currentHealth; 
         if (isTripActive)
         {
-            sliderValueHP.maxValue = tripMaxHealth;
+            sliderValueHP.maxValue = tripCurrentMaxHealth;
             SaveHP();
         }
 
         if (isKrisActive)
         {
-            sliderValueHP.maxValue = krisMaxHealth;
+            sliderValueHP.maxValue = krisCurrentMaxHealth;
             SaveHP();
         }       
     }
@@ -217,29 +219,6 @@ public class PlayerHealthScript : MonoBehaviour
             krisCurrentHealth += heal;
         }
         
-    }
-
-    public IEnumerable HoT (int heal)
-    {
-        if (isTripActive)
-        {
-            tripCurrentHealth += heal;
-            if (tripMaxHealth < tripCurrentHealth)
-            {
-                tripCurrentHealth = tripMaxHealth; 
-            }
-            yield return new WaitForSeconds(1);
-        }
-
-        if (isKrisActive)
-        {
-            krisCurrentHealth += heal;
-            if (krisMaxHealth < krisCurrentHealth)
-            {
-                krisCurrentHealth = krisMaxHealth;
-            }
-            yield return new WaitForSeconds(1);
-        }
     }
 
     public void MakeAShield(int ss)

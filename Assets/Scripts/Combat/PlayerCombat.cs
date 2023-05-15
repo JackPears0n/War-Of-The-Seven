@@ -199,7 +199,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q) && krisSkillsReady[1])
         {
-            pHS.MakeAShield(50);
+            pHS.MakeAShield(krisDamage[1]);
 
             Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, krisRange[1], enemyLayers);
 

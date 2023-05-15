@@ -7,6 +7,7 @@ public enum States // used by all logic
     Jumping,
     Attacking,
     Dead,
+    InMenu,
 
     // Boss
     Waking,
