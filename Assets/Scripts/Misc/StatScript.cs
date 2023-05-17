@@ -19,7 +19,7 @@ public class StatScript : MonoBehaviour
     public int[] krisSkillMods;
 
     // Modifier tokens
-    public int maxTokens;
+    public int maxTokens = 30;
     public int currentTokens;
     public int usedTokens;
 
@@ -33,14 +33,19 @@ public class StatScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyUp(KeyCode.J))
         {
             statMenu.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                UseMultipliers();
+            }
         }
 
     }
 
-    void UseMultipliers()
+    public void UseMultipliers()
     {
         // Boost trip max hp
         pHS.tripCurrentMaxHealth = (pHS.tripMaxHealth + (5 * tripMaxHPMod));
@@ -57,7 +62,7 @@ public class StatScript : MonoBehaviour
         pCS.tripDamage[3] += (2 * tripSkillMods[3]);
 
         // Boost kris basic dmg
-        pCS.krisDamage[0] += (1 * krisSkillMods[0]);
+        pCS.krisDamage[0] += (krisSkillMods[0]);
         // Boost kris advanced shield
         pCS.krisDamage[1] += (2 * krisSkillMods[1]);
         // lower kris tuning cooldown

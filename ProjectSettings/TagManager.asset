@@ -10,6 +10,7 @@ TagManager:
   - Kris
   - Trip
   - Corrupted Crystal Construct
+  - Death
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Decor
   - Enemy
   - Boss
-  - 
+  - Item
   - 
   - 
   - 
