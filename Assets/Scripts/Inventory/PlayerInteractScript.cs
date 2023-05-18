@@ -18,12 +18,6 @@ public class PlayerInteractScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Opens inventory
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            inventoryMenu.SetActive(true);
-        }
-
         // Removes focus
         if (Input.GetMouseButtonDown(0))
         {
