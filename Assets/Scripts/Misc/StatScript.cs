@@ -36,6 +36,7 @@ public class StatScript : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.J))
         {
             statMenu.SetActive(!statMenu.activeSelf);
+            UseMultipliers();
         }
 
     }

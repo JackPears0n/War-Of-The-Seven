@@ -240,10 +240,12 @@ public class PlayerMovement : MonoBehaviour
         if (grounded)
         {
             rb.drag = groundDrag;
+            rb.mass = 9.22f;
         }
         else
         {
-            rb.drag = 0;
+            rb.drag = 0.5f;
+            rb.mass = 30;
         }
     }
 
