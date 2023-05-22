@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour
 {
@@ -24,7 +25,13 @@ public class ButtonScript : MonoBehaviour
 
     public void Quit()
     {
+        EditorApplication.isPlaying = false;
         Application.Quit();
+    }
+
+    public void LevelChange(string level)
+    {
+        SceneManager.LoadScene(level);
     }
 
     public void AddModTokenHP(string modType)

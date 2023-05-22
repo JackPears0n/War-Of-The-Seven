@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Opening Screen.unity
+    guid: f77ae4b2511625941bbed21fbcbd70f0
+  - enabled: 1
+    path: Assets/Scenes/The Void.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: 28819e6a687742d4ca481cf50128827d
+  - enabled: 1
+    path: Assets/Scenes/Completed.unity
+    guid: 10e88d63df401a04aafebe59910f6a3e
   m_configObjects: {}

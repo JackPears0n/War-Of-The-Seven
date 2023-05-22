@@ -44,7 +44,7 @@ public class PlayerCamScript : MonoBehaviour
             // Locks the cursor in place
             Cursor.lockState = CursorLockMode.Locked;
 
-            // Makes cursor incisible
+            // Makes cursor invisable
             Cursor.visible = false;
 
             transform.rotation = camOrientation.rotation;
@@ -65,5 +65,14 @@ public class PlayerCamScript : MonoBehaviour
             camOrientation.rotation = Quaternion.Euler(0, yRotate, 0);
         }
 
+    }
+
+    private void OnDestroy()
+    {
+        // Unlocks the cursor in place
+        Cursor.lockState = CursorLockMode.None;
+
+        // Makes cursor visable
+        Cursor.visible = true;
     }
 }

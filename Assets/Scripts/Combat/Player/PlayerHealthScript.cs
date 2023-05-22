@@ -54,6 +54,7 @@ public class PlayerHealthScript : MonoBehaviour
 
     void Start()
     {
+        /*
         if (isTripActive)
         {
             if (!PlayerPrefs.HasKey("TripHP"))
@@ -66,8 +67,8 @@ public class PlayerHealthScript : MonoBehaviour
                 LoadHP();
             }
         }
-        tripCurrentMaxHealth = tripMaxHealth;
-
+        
+        
         if (isKrisActive)
         {
             if (!PlayerPrefs.HasKey("KrisHP"))
@@ -79,8 +80,13 @@ public class PlayerHealthScript : MonoBehaviour
             {
                 LoadHP();
             }
-        }
+        }*/
+
+        tripCurrentMaxHealth = tripMaxHealth;
         krisCurrentMaxHealth = krisMaxHealth;
+
+        tripCurrentHealth = tripMaxHealth;
+        krisCurrentHealth = krisMaxHealth;
     }
 
     void Update()
@@ -90,7 +96,13 @@ public class PlayerHealthScript : MonoBehaviour
     }
 
     void CheckHealth()
-    {
+    {        
+        if (krisCurrentHealth <= 0 && tripCurrentHealth <= 0)
+        {
+            state = States.Dead;
+            Die();
+        }
+
         if (isTripActive)
         {
             if (tripCurrentHealth <= 0)
@@ -118,7 +130,9 @@ public class PlayerHealthScript : MonoBehaviour
                 UpdateHPSlider(krisCurrentHealth);
             }
         }
-        
+
+
+
     }
 
     void LoadHP()
@@ -146,18 +160,19 @@ public class PlayerHealthScript : MonoBehaviour
     }
 
     void UpdateHPSlider(int currentHealth)
-    {
-        sliderValueHP.value = currentHealth; 
+    {       
         if (isTripActive)
         {
             sliderValueHP.maxValue = tripCurrentMaxHealth;
-            SaveHP();
+            sliderValueHP.value = currentHealth;
+            //SaveHP();
         }
 
         if (isKrisActive)
         {
             sliderValueHP.maxValue = krisCurrentMaxHealth;
-            SaveHP();
+            sliderValueHP.value = currentHealth;
+            //SaveHP();
         }       
     }
 
