@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealthScript : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
+    [SerializeField]public Slider healthBar;
 
 
     // Start is called before the first frame update
@@ -39,6 +41,7 @@ public class EnemyHealthScript : MonoBehaviour
 
     void CheckHealth()
     {
+        UpdateHPBar();
         if(currentHealth <= 0)
         {
             gameObject.SetActive(false);
@@ -53,5 +56,11 @@ public class EnemyHealthScript : MonoBehaviour
     public void HalveHP()
     {
         currentHealth /= 2;
+    }
+
+    public void UpdateHPBar()
+    {
+        healthBar.maxValue = maxHealth;
+        healthBar.value = currentHealth;
     }
 }
