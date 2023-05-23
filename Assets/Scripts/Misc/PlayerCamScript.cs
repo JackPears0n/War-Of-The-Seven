@@ -15,6 +15,7 @@ public class PlayerCamScript : MonoBehaviour
     // Camera rotation
     float xRotate;
     float yRotate;
+    float zRotate;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,7 @@ public class PlayerCamScript : MonoBehaviour
 
 
             // Clamps the axis view between
-            xRotate = Mathf.Clamp(xRotate, -80, 80);
+            xRotate = Mathf.Clamp(xRotate, -70, 70);
 
             // Roate camera and its orientation
             transform.rotation = Quaternion.Euler(xRotate, yRotate, 0);

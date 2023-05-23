@@ -25,7 +25,7 @@ public class PlayerInteractScript : MonoBehaviour
         }
         
         // Sets/changes the focus
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;

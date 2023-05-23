@@ -281,7 +281,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7611896449784781833}
   - component: {fileID: 5540512173115560785}
-  - component: {fileID: 7912523203978527272}
   m_Layer: 11
   m_Name: Kris_Cog
   m_TagString: Untagged
@@ -321,16 +320,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   item: {fileID: 11400000, guid: 942bc78b1277c1345aaaf6c1a6567a73, type: 2}
---- !u!114 &7912523203978527272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7127284859353614003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83e53046c2533404eb32c5d879b91d34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 3
