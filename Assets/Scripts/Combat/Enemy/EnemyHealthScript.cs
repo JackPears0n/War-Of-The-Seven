@@ -6,10 +6,15 @@ using UnityEngine.UI;
 
 public class EnemyHealthScript : MonoBehaviour
 {
+    [Header("Health")]
     public float maxHealth;
     public float currentHealth;
-    [SerializeField]public Slider healthBar;
 
+    [Header("HP Bar")]
+    [SerializeField] private Slider slider;
+    [SerializeField] public Camera cam;
+    [SerializeField] public Transform target;
+    [SerializeField] private Vector3 offset;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +47,7 @@ public class EnemyHealthScript : MonoBehaviour
     void CheckHealth()
     {
         UpdateHPBar();
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             gameObject.SetActive(false);
         }
@@ -60,7 +65,10 @@ public class EnemyHealthScript : MonoBehaviour
 
     public void UpdateHPBar()
     {
-        healthBar.maxValue = maxHealth;
-        healthBar.value = currentHealth;
+        slider.maxValue = maxHealth;
+        slider.value = currentHealth;
+        transform.rotation = cam.transform.rotation;
+        transform.position = target.position + offset;
     }
+
 }
