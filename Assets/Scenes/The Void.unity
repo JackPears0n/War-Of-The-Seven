@@ -19267,6 +19267,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 38f5584f7365b4245bfb02e87169cb0d, type: 3}
+--- !u!1 &507264636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2654506965876009459, guid: d5d9e028b807fa84fb08bcc6289af6fc, type: 3}
+  m_PrefabInstance: {fileID: 2732844699038952039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &512218023 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2807968062878878050, guid: 4a54b0ea213fa61458016aa47ea2ef3d, type: 3}
@@ -62931,6 +62936,7 @@ GameObject:
   - component: {fileID: 1716837700}
   - component: {fileID: 1716837702}
   - component: {fileID: 1716837703}
+  - component: {fileID: 1716837704}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -63004,32 +63010,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   space: 25
-  items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  items: []
+--- !u!114 &1716837704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716837699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 138eee0c052afa846915e526105edd63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voidFissure: {fileID: 1680633600}
+  boss: {fileID: 507264636}
 --- !u!1001 &1718055488
 PrefabInstance:
   m_ObjectHideFlags: 0

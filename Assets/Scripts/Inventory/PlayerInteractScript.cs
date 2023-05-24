@@ -12,7 +12,7 @@ public class PlayerInteractScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,13 +23,13 @@ public class PlayerInteractScript : MonoBehaviour
         {
             RemoveFocus();
         }
-        
+
         // Sets/changes the focus
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetMouseButtonDown(1))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            
+
             if (Physics.Raycast(ray, out hit, 100))
             {
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
@@ -45,10 +45,10 @@ public class PlayerInteractScript : MonoBehaviour
 
     void SetFocus(Interactable newFocus)
     {
-        
+
         if (newFocus != focus)
         {
-            if (focus!= null)
+            if (focus != null)
             {
                 // Makes sure the old focus is removed
                 focus.OnDefocused();
@@ -66,7 +66,7 @@ public class PlayerInteractScript : MonoBehaviour
         // If there is a focus it gets removed
         if (focus != null)
         {
-            
+
             focus.OnDefocused();
         }
         focus = null;

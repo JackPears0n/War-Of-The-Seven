@@ -7,7 +7,6 @@ using UnityEngine.Assertions.Must;
 
 public class BossCombat : MonoBehaviour
 {
-    public GameObject levelChanger;
     public NavMeshAgent agent;
 
     private Transform player;
@@ -157,10 +156,5 @@ public class BossCombat : MonoBehaviour
         Gizmos.DrawWireSphere(AttkPnt.position, advnAttkRange);
         Gizmos.DrawWireSphere(AttkPnt.position, fOV);
 
-    }
-
-    public void OnDestroy()
-    {
-        levelChanger.SetActive(true);
     }
 }

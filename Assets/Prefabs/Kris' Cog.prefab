@@ -281,9 +281,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7611896449784781833}
   - component: {fileID: 5540512173115560785}
+  - component: {fileID: 4246342940471286063}
   m_Layer: 11
-  m_Name: Kris_Cog
-  m_TagString: Untagged
+  m_Name: Kris' Cog
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,7 +297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7127284859353614003}
   m_LocalRotation: {x: -0, y: -0.691843, z: -0, w: 0.72204804}
-  m_LocalPosition: {x: -2380.776, y: 3375.98, z: 7291}
+  m_LocalPosition: {x: -2381.61, y: 3373.45, z: 7295.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -304,7 +305,7 @@ Transform:
   - {fileID: 150774589339913134}
   - {fileID: 941964748014229783}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -87.552, z: 0}
 --- !u!114 &5540512173115560785
 MonoBehaviour:
@@ -318,5 +319,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd0a023b4b72ba468bf62382edd34ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
+  radius: 10
   item: {fileID: 11400000, guid: 942bc78b1277c1345aaaf6c1a6567a73, type: 2}
+--- !u!135 &4246342940471286063
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127284859353614003}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8565051
+  m_Center: {x: 0, y: 0, z: 0}

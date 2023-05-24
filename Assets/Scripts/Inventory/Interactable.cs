@@ -14,7 +14,7 @@ public class Interactable : MonoBehaviour
         // This method is supposed to be overwritten
         print("INTERACTING ");
     }
-        
+
     // Update is called once per frame
     void Update()
     {
