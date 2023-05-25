@@ -6,7 +6,7 @@ public class PlayerTalkScript : MonoBehaviour
 {
     private ProgressionScript pS;
     public GameObject gameManager;
-    public Transform player;
+    public GameObject player;
     public LayerMask npcs;
     public Camera cam;
     public float talkRange;
@@ -23,18 +23,22 @@ public class PlayerTalkScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
 
-            Collider[] hitNPCS = Physics.OverlapSphere(player.position, talkRange, npcs);
+            Collider[] hitNPCS = Physics.OverlapSphere(player.transform.position, talkRange, npcs);
 
             foreach (Collider npc in hitNPCS)
             {
                 if (npc.gameObject.tag == "Kris")
                 {
+                    pS.dialouge.gameObject.SetActive(true);
                     pS.dialouge.text = "Well met friend, my name is Kris. " +
-                        "One presume you fell down here too? Yes? Well, The Void, where we are, is not somewhere one wants to be in for very long. If you help to get one's cog back, one can help you in turn. " +
+                        "One presumes you fell down here too? Yes? Well, The Void, where we are, is not somewhere one wants to be in for very long. If you help to get one's cog back, one can help you in turn. " +
                         "Don't worry, oneself help you get it back, do not fret. Just follow the Void Lights and we shall find one's misssing cog.";
                     pS.talkedToKris = true;
                     pS.hasLookedAround = true;
                     pS.lookingForCog = true;
+                    pS.krisNPC.SetActive(false);
+                    player.GetComponent<ChangePlayerScript>().enabled = true;
+                    StartCoroutine(DeactivateGameObject(pS.dialouge.gameObject));
                 }
                 else
                 {
@@ -44,5 +48,11 @@ public class PlayerTalkScript : MonoBehaviour
 
 
         }
+    }
+
+    IEnumerator DeactivateGameObject(GameObject go)
+    {
+        yield return new WaitForSeconds(10f);
+        pS.dialouge.gameObject.SetActive(false);
     }
 }

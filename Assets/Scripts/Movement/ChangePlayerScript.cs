@@ -42,7 +42,7 @@ public class ChangePlayerScript : MonoBehaviour
         }
     }
 
-    void ChangeToTrip()
+    public void ChangeToTrip()
     {
         if (pHS.isKrisActive)
         {            
@@ -64,7 +64,7 @@ public class ChangePlayerScript : MonoBehaviour
 
     }
 
-    void ChangeToKris()
+    public void ChangeToKris()
     {
         if (pHS.isTripActive)
         {       

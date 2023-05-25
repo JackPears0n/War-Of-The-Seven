@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ProgressionScript : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class ProgressionScript : MonoBehaviour
     public TMP_Text objective;
     public TMP_Text dialouge;
     public GameObject player;
+    public ChangePlayerScript changePlayerScript;
+    public GameObject krisNPC;
 
     public bool hasLookedAround;
     public bool talkedToKris;
@@ -17,11 +20,19 @@ public class ProgressionScript : MonoBehaviour
     public bool helpedKris;
     public bool lookingForCog;
     public bool foundVoidCrawler;
+    public GameObject voidCrawlerTrigger;
+    public GameObject voidCrawler;
     public bool killedVoidCrawler;
+    public GameObject teleportButton;
 
     public bool killedTheBoss;
+    public GameObject bossIslandTigger;
+    public bool foundBossIsland;
     public bool foundTheBoss;
+    public GameObject bossTrigger;
+    public GameObject boss;
     public bool exitUnlocked;
+    public GameObject voidFissure;
 
     // Start is called before the first frame update
     void Start()
@@ -69,44 +80,80 @@ public class ProgressionScript : MonoBehaviour
 
     void HelpKris()
     {
-        if (lookingForCog)
+        if (lookingForCog && !foundVoidCrawler)
         {
             objective.text = "Objective: \n Follow the path of lights to find Kris' cog";
+            if (voidCrawlerTrigger.activeSelf == false)
+            {
+                foundVoidCrawler = true;
+            }
             
         }
 
-        if (foundVoidCrawler)
+        if (foundVoidCrawler && !killedVoidCrawler)
         {
+            dialouge.gameObject.SetActive(true);
+            dialouge.text = "Look in that cavern friend, that abhorrent brute has one's cog. " +
+                "It seems agressive, looks like we must retrieve it by force.";
             objective.text = "Objective: \n Kill the Crawler and retreive Kris' cog";
-
+            if (voidCrawler.activeSelf == false)
+            {
+                killedVoidCrawler = true;
+            }
         }
 
         if (killedVoidCrawler)
-        {
-            objective.text = "Objective: \n Go with Kris to find a way out";
-
+        {           
+            objective.text = "Objective: \n Go with Kris to find the gate keeper's island";
+            dialouge.text = "Thank you very much friend, now, let us continue on with this quest! " +
+                "Here, let me grant you the ability to take us both to the gate keeper's island";
+            teleportButton.SetActive(true);
+            helpedKris = true;
         }
     }
 
     void KillTheGateKeeper()
     {
-        // Find Gate keeper
-        if (!foundTheBoss)
+        if (bossIslandTigger.activeSelf == false)
         {
+            foundBossIsland = true;
+        }
+        
+        // Find Gate keeper
+        if (foundBossIsland && !foundTheBoss)
+        {
+            dialouge.gameObject.SetActive(false);
             objective.text = "Objective: \n Find the Gate Keeper";
+            if (bossTrigger.activeSelf == false)
+            {
+                foundTheBoss = true;
+            }
         }
 
         // Kill Gate keeper
         if (foundTheBoss && !killedTheBoss)
         {
             objective.text = "Objective: \n Slay the Gate Keeper";
+            if (boss.activeSelf == false)
+            {
+                killedTheBoss = true;
+            }
         }
 
         // Unlock exit
-        if (killedTheBoss)
+        if (killedTheBoss && !exitUnlocked)
         {
             objective.text = "Objective: \n Find the exit on the Gate Keeper's island";
             exitUnlocked = true;
+            voidFissure.SetActive(true);
+        }
+
+        if (exitUnlocked)
+        {
+            if (voidFissure.activeSelf == false)
+            {
+                SceneManager.LoadScene("Completed");
+            }
         }
     }
 }

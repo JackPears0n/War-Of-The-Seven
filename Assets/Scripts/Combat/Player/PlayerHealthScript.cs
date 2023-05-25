@@ -15,7 +15,8 @@ public class PlayerHealthScript : MonoBehaviour
     // Variables
     //-----------
 
-    States state; 
+    States state;
+    private ChangePlayerScript changePlayerScript;
 
     [Header("Character holders")]
     public GameObject tripHolder;
@@ -87,6 +88,8 @@ public class PlayerHealthScript : MonoBehaviour
 
         tripCurrentHealth = tripMaxHealth;
         krisCurrentHealth = krisMaxHealth;
+
+        changePlayerScript = GetComponent<ChangePlayerScript>();
     }
 
     void Update()
@@ -105,10 +108,16 @@ public class PlayerHealthScript : MonoBehaviour
 
         if (isTripActive)
         {
-            if (tripCurrentHealth <= 0)
+            if (tripCurrentHealth <= 0 && changePlayerScript.enabled == false)
             {
                 isTripDead = true;
-                ChangePC("Kris");
+                state = States.Dead;
+                Die();
+            }
+            else if (tripCurrentHealth <= 0)
+            {
+                isTripDead = true;
+                changePlayerScript.ChangeToKris();
             }
             else
             {
@@ -122,7 +131,7 @@ public class PlayerHealthScript : MonoBehaviour
             if (krisCurrentHealth <= 0)
             {
                 isKrisDead = true;
-                ChangePC("Trip");
+                changePlayerScript.ChangeToTrip();
             }
             else
             {

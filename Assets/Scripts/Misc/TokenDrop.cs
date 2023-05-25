@@ -27,7 +27,7 @@ public class TokenDrop : MonoBehaviour
 
     private void OnDestroy()
     {
-        int rand = Random.Range(0, 49);
+        int rand = Random.Range(0, 9);
         if (rand == 0)
         {
             AddModToken();
