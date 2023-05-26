@@ -38,6 +38,10 @@ public class InventorySlot : MonoBehaviour
         if (item != null)
         {
             item.Use(player);
+            if (item.name == "Health Potion")
+            {
+                ClearSlot();
+            }
         }
     }
 

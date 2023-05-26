@@ -17,7 +17,7 @@ public class ChangeScene : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D colliosion)
+    private void OnTriggerEnter(Collider colliosion)
     {
         if (colliosion.CompareTag("Player"))
         {

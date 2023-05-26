@@ -32,7 +32,7 @@ public class PlayerTalkScript : MonoBehaviour
                     pS.dialouge.gameObject.SetActive(true);
                     pS.dialouge.text = "Well met friend, my name is Kris. " +
                         "One presumes you fell down here too? Yes? Well, The Void, where we are, is not somewhere one wants to be in for very long. If you help to get one's cog back, one can help you in turn. " +
-                        "Don't worry, oneself help you get it back, do not fret. Just follow the Void Lights and we shall find one's misssing cog.";
+                        "Don't worry, oneself shall help you get it back, do not fret. Just follow the Void Lights and we shall find one's misssing cog.";
                     pS.talkedToKris = true;
                     pS.hasLookedAround = true;
                     pS.lookingForCog = true;

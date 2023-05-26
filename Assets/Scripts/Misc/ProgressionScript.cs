@@ -82,7 +82,7 @@ public class ProgressionScript : MonoBehaviour
     {
         if (lookingForCog && !foundVoidCrawler)
         {
-            objective.text = "Objective: \n Follow the path of lights to find Kris' cog";
+            objective.text = "Objective: \n Follow the path of lights, in the direction Kris was facing, to find Kris' cog";
             if (voidCrawlerTrigger.activeSelf == false)
             {
                 foundVoidCrawler = true;

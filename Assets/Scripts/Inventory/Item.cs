@@ -16,7 +16,7 @@ public class Item : ScriptableObject
         if (itemName == "Health Potion")
         {
             pHS = player.GetComponent<PlayerHealthScript>();
-            pHS.Heal(10);
+            pHS.Heal(15);
         }
 
         Debug.Log("Using " + itemName);
