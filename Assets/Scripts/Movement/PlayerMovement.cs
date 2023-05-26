@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // Orientation
         transform.rotation = orientation.rotation;

@@ -15,7 +15,6 @@ public class PlayerCamScript : MonoBehaviour
     // Camera rotation
     float xRotate;
     float yRotate;
-    float zRotate;
 
     // Start is called before the first frame update
     void Start()
@@ -39,9 +38,16 @@ public class PlayerCamScript : MonoBehaviour
 
             // Makes cursor incisible
             Cursor.visible = true;
+
+            // Pauses any physics
+            Time.timeScale = 0;
+
         }
         else
         {
+            // Resumes physics
+            Time.timeScale = 1;
+
             // Locks the cursor in place
             Cursor.lockState = CursorLockMode.Locked;
 

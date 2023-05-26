@@ -9,6 +9,7 @@ public class ButtonScript : MonoBehaviour
 {
     public GameObject playerObj;
     private StatScript ss;
+    public GameObject hUDMenu;
 
     [Header("Text")]
     public TMP_Text tripHPTokens;
@@ -21,6 +22,14 @@ public class ButtonScript : MonoBehaviour
     void Start()
     {
         ss = playerObj.GetComponent<StatScript>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            hUDMenu.SetActive(!hUDMenu.activeSelf);
+        }
     }
 
     public void Quit()
@@ -368,9 +377,9 @@ public class ButtonScript : MonoBehaviour
 
                 if (ss.krisSkillMods[1] < 10)
                 {
-                    ss.krisSkillMods[1] += 1;
-                    ss.currentTokens -= 1;
-                    ss.usedTokens += 1;
+                    ss.krisSkillMods[1] -= 1;
+                    ss.currentTokens += 1;
+                    ss.usedTokens -= 1;
                     krisSkillTokens[1].text = ss.krisSkillMods[1].ToString();
                 }
                 else
