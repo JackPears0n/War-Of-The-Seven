@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028349, g: 0.22571409, b: 0.30692238, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028396, g: 0.22571482, b: 0.30692363, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3808,6 +3808,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -4410,6 +4414,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -14638,6 +14646,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -15944,7 +15956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -36.3, y: -180.8}
+  m_AnchoredPosition: {x: -36.30005, y: -180.79999}
   m_SizeDelta: {x: 1.8019, y: 1.8328}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &403261682
@@ -21008,6 +21020,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -22071,6 +22087,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -27380,6 +27400,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -28135,6 +28159,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -29205,6 +29233,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -30743,6 +30775,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -33515,6 +33551,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -35004,6 +35044,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -42414,6 +42458,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -44719,6 +44767,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -45995,6 +46047,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -53235,7 +53291,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5897282028104344986, guid: 42b06526479390642aeeeed9d4355704, type: 3}
       propertyPath: m_Name
-      value: HealthPot
+      value: Health Potion
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897282028104344986, guid: 42b06526479390642aeeeed9d4355704, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5897282028104344986, guid: 42b06526479390642aeeeed9d4355704, type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     - target: {fileID: 6529245768921136928, guid: 42b06526479390642aeeeed9d4355704, type: 3}
       propertyPath: m_RootOrder
@@ -54194,6 +54258,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -55856,6 +55924,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -58074,6 +58146,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -61131,6 +61207,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -70126,6 +70206,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -70818,6 +70902,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -71988,6 +72076,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -74568,6 +74660,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -75190,6 +75286,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -77708,6 +77808,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445893502203, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_SizeDelta.x
       value: 20.8807
@@ -86116,6 +86220,10 @@ PrefabInstance:
       propertyPath: sliderValueShield
       value: 
       objectReference: {fileID: 372946491}
+    - target: {fileID: 425370264176381610, guid: 958fd374504560b44a66d3a69b2a6f59, type: 3}
+      propertyPath: tripCurrentHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 425370264176381611, guid: 958fd374504560b44a66d3a69b2a6f59, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -86893,14 +87001,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 528243559}
     m_Modifications:
-    - target: {fileID: 4648785445893502200, guid: 58a399168d2302742868c2191aaaf009, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+    - target: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
+      propertyPath: player
       value: 
-      objectReference: {fileID: 4648785447158875208}
-    - target: {fileID: 4648785445893502200, guid: 58a399168d2302742868c2191aaaf009, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UseItem
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 293684446}
     - target: {fileID: 4648785445908138675, guid: 58a399168d2302742868c2191aaaf009, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -86989,24 +87093,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory Slot
       objectReference: {fileID: 0}
-    - target: {fileID: 4648785446151195603, guid: 58a399168d2302742868c2191aaaf009, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 58a399168d2302742868c2191aaaf009, type: 3}
---- !u!114 &4648785447158875208 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3840119901704636688, guid: 58a399168d2302742868c2191aaaf009, type: 3}
-  m_PrefabInstance: {fileID: 4648785447158875207}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1addd93fd5408754e96bd9778fd27bc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5564834085888180360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7554578197533125359, guid: d5d9e028b807fa84fb08bcc6289af6fc, type: 3}

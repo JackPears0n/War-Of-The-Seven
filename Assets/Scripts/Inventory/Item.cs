@@ -7,21 +7,19 @@ public class Item : ScriptableObject
     public Sprite icon = null;
     public bool isDefaultItem = false;
 
-    public GameObject player;
     private PlayerHealthScript pHS;
 
-    public virtual void Use()
+    public virtual void Use(GameObject player)
     {
-        pHS = player.GetComponent<PlayerHealthScript>();
-
         // Use item
         // Something may happen
         if (itemName == "Health Potion")
         {
+            pHS = player.GetComponent<PlayerHealthScript>();
             pHS.Heal(10);
         }
 
-        Debug.Log("Using " + name);
+        Debug.Log("Using " + itemName);
 
     }
 

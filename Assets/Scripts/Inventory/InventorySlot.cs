@@ -6,6 +6,8 @@ public class InventorySlot : MonoBehaviour
     public Image icon;
     public Button removeButton;
 
+    public GameObject player;
+
     Item item;
 
     public void AddItem(Item newItem)
@@ -35,7 +37,7 @@ public class InventorySlot : MonoBehaviour
     {
         if (item != null)
         {
-            item.Use();
+            item.Use(player);
         }
     }
 

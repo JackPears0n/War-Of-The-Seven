@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Health Potion
   icon: {fileID: 21300000, guid: 22abf349b4facc34cbaa3b82fb160fc9, type: 3}
   isDefaultItem: 0
+  player: {fileID: 0}

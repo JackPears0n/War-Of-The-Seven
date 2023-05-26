@@ -140,7 +140,15 @@ public class PlayerHealthScript : MonoBehaviour
             }
         }
 
+        if (tripCurrentHealth > tripCurrentMaxHealth)
+        {
+            tripCurrentHealth = tripCurrentMaxHealth;
+        }
 
+        if (krisCurrentHealth > krisCurrentMaxHealth)
+        {
+            krisCurrentHealth = krisCurrentMaxHealth;
+        }
 
     }
 
@@ -233,6 +241,7 @@ public class PlayerHealthScript : MonoBehaviour
 
     public void Heal(int heal)
     {
+
         if (isTripActive)
         {
             tripCurrentHealth += heal;
