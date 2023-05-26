@@ -25,7 +25,7 @@ public class ButtonScript : MonoBehaviour
 
     public void Quit()
     {
-        EditorApplication.isPlaying = false;
+        //EditorApplication.isPlaying = false;
         Application.Quit();
     }
 
