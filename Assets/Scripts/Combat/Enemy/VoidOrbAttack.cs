@@ -7,6 +7,7 @@ using UnityEngine.Assertions.Must;
 
 public class VoidOrbAttack : MonoBehaviour
 {
+    private Animator anim;
     public NavMeshAgent agent;
 
     public Transform player;
@@ -38,10 +39,12 @@ public class VoidOrbAttack : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         pHS = playerHealth.GetComponent<PlayerHealthScript>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
+        anim.Play("Void Orb Idle");
         // Logs the active player
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -135,6 +138,7 @@ public class VoidOrbAttack : MonoBehaviour
 
     void VoidFlash()
     {
+        anim.Play("Void Orb Attack");
         pHS.LoseHealth(attackDamage);
     }
 

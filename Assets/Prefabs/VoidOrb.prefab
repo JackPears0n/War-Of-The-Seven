@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 8093961453908559173}
   - component: {fileID: 1690876709}
   - component: {fileID: 685301316}
+  - component: {fileID: 3141964178005336709}
   m_Layer: 9
   m_Name: VoidOrb
   m_TagString: Void Orb
@@ -115,7 +116,7 @@ Transform:
   m_Children:
   - {fileID: 8032141149301845402}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1751341824926091710
 MeshFilter:
@@ -337,6 +338,26 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0.0000009536743, y: -0.00000047683716, z: -0.000000059604645}
+--- !u!95 &3141964178005336709
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2641940785271823521}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e4a868a3599e6d14caf2560b891be0a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5343291016126669587
 GameObject:
   m_ObjectHideFlags: 0
