@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class ProgressionScript : MonoBehaviour
 {
+    public GameObject[] guideObjects;
+    // Location 1 (0)
+    private bool o0hbr = false;
+
     private PlayerTalkScript pTS;
     public TMP_Text objective;
     public TMP_Text dialouge;
@@ -48,6 +52,25 @@ public class ProgressionScript : MonoBehaviour
 
     void CheckProgress()
     {
+        // Goes through each guide marker
+        for (int i = 0; i < guideObjects.Length; i++)
+        {
+            // If the first marker is not active move to the next one
+            if (!guideObjects[0].activeSelf  && !o0hbr)
+            {
+                guideObjects[1].SetActive(true);
+                o0hbr = true;
+            }
+            // If the marker is not active, the next in the list will be set as active
+            else if (!guideObjects[i].activeSelf)
+            {
+                guideObjects[i+1].SetActive(true);
+            }
+            else
+            {
+                return;
+            }
+        }
         if (!talkedToKris)
         {
             LookAround();
