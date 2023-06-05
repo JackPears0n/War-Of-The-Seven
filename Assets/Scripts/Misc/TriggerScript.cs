@@ -21,6 +21,7 @@ public class TriggerScript : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             gameObject.SetActive(false);
+            print("Triggered and deactivated");
         }
     }
 }
