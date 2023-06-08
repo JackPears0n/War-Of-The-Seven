@@ -9,6 +9,10 @@ public class BossCombat : MonoBehaviour
 {
     public NavMeshAgent agent;
 
+    public GameObject bossHolder;
+    private Animator anim;
+    private string currentState;
+
     private Transform player;
 
     public GameObject playerHealth;
@@ -156,5 +160,17 @@ public class BossCombat : MonoBehaviour
         Gizmos.DrawWireSphere(AttkPnt.position, advnAttkRange);
         Gizmos.DrawWireSphere(AttkPnt.position, fOV);
 
+    }
+
+    void ChangeAnimation(string newState)
+    {
+        // Stop the animation iterupting itself
+        if (currentState == newState) return;
+
+        // Play the animation
+        anim.Play(newState);
+
+        // Reassign the currentState#
+        currentState = newState;
     }
 }
