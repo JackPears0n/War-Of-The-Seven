@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class VoidCrawlerAttack : MonoBehaviour
 {
+    private Animator anim;
+    private string currentState;
+
     public NavMeshAgent agent;
 
     public Transform player;
@@ -36,6 +39,7 @@ public class VoidCrawlerAttack : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         pHS = playerHealth.GetComponent<PlayerHealthScript>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -60,17 +64,20 @@ public class VoidCrawlerAttack : MonoBehaviour
         {
             Patroling();
             //print("patroling");
+            ChangeAnimation("Void Crawler Walk");
         }
 
         if (playerInFOV && !playerInAttackRange)
         {
             ChasePlayer();
             //print("chasing");
+            ChangeAnimation("Void Crawler Walk");
         }
 
         if (playerInAttackRange && playerInFOV)
         {
             AttackPlayer();
+            ChangeAnimation("Void Crawler Attack");
         }
     }
 
@@ -157,5 +164,17 @@ public class VoidCrawlerAttack : MonoBehaviour
             pHS.LoseHealth(attackDamage);
         }
 
+    }
+
+    void ChangeAnimation(string newState)
+    {
+        // Stop the animation iterupting itself
+        if (currentState == newState) return;
+
+        // Play the animation
+        anim.Play(newState);
+
+        // Reassign the currentState#
+        currentState = newState;
     }
 }
