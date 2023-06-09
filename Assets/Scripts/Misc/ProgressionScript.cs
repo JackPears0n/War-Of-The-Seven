@@ -65,7 +65,7 @@ public class ProgressionScript : MonoBehaviour
                 o0hbr = true;
             }
 
-            else if (!guideObjects[o].activeSelf && o0hbr && o < 2)
+            else if (!guideObjects[o].activeSelf && o0hbr && o < 1)
             {
                 o++;
                 guideObjects[o].SetActive(true);
@@ -76,7 +76,7 @@ public class ProgressionScript : MonoBehaviour
 
         else if (!helpedKris)
         {
-            if (!guideObjects[o].activeSelf && o0hbr && o < 45)
+            if (!guideObjects[o].activeSelf && o0hbr && o < 44)
             {
                 o++;
                 guideObjects[o].SetActive(true);
