@@ -62,6 +62,7 @@ public class PlayerCombat : MonoBehaviour
     public float krisSpearSpeed;
     public GameObject crystalSpear;
     public float crystalSpearSpeed;
+    public bool krisCanShootTuning;
 
     [Header("Kris variables")]
     private int maxCrystalSpearCharges = 3;
@@ -87,6 +88,7 @@ public class PlayerCombat : MonoBehaviour
 
         voidPulses = false;
         maxCrystalSpearCharges = 3;
+        krisCanShootTuning = true;
         SetBaseSkillStats();
     }
 
@@ -295,6 +297,11 @@ public class PlayerCombat : MonoBehaviour
 
         krisSkillsReady[2] = true;
         print("Tuning skill is ready");
+    }
+
+    void KrisTuningTimeGap()
+    {
+
     }
 
     void ResetCooldownPk()
