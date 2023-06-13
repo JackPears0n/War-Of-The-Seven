@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1702705680016608686}
   - component: {fileID: 3225580322508038356}
   - component: {fileID: 1229642611129626254}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Crystal Spear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 8320
   destroy:
     serializedVersion: 2
     m_Bits: 1856

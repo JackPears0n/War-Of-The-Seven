@@ -220,23 +220,28 @@ public class PlayerCombat : MonoBehaviour
             
             for (currentCrystalSpearCharges = maxCrystalSpearCharges; currentCrystalSpearCharges > 0; currentCrystalSpearCharges--)
             {
-                // Instanciates the spear gameobject
-                GameObject CreateSpear = Instantiate(crystalSpear, krisAttackPoint.position, krisAttackPoint.rotation);
-
-                // Array for storing enemies
-                Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, krisRange[2], enemyLayers);
-
-                // Makes spear move
-                CreateSpear.GetComponent<Rigidbody>().velocity = krisAttackPoint.transform.up * crystalSpearSpeed;
-
-                // Damages the hit enemies
-                foreach (Collider enemy in hitEnemies)
+                if (krisCanShootTuning)
                 {
-                    print("We hit" + enemy.name);
-                    enemy.GetComponent<EnemyHealthScript>().TakeDamage(krisDamage[2]);
+                    krisCanShootTuning = false;
+                    // Instanciates the spear gameobject
+                    GameObject CreateSpear = Instantiate(crystalSpear, krisAttackPoint.position, krisAttackPoint.rotation);
+
+                    // Array for storing enemies
+                    Collider[] hitEnemies = Physics.OverlapSphere(krisAttackPoint.position, krisRange[2], enemyLayers);
+
+                    // Makes spear move
+                    CreateSpear.GetComponent<Rigidbody>().velocity = krisAttackPoint.transform.up * crystalSpearSpeed;
+
+                    // Damages the hit enemies
+                    foreach (Collider enemy in hitEnemies)
+                    {
+                        print("We hit" + enemy.name);
+                        enemy.GetComponent<EnemyHealthScript>().TakeDamage(krisDamage[2]);
+                    }
+                    Invoke(nameof(KrisTuningTimeGap), 2f);
                 }
-            }
-            
+
+            }          
 
             //StartCoroutine("CrystalStorm");
 
@@ -301,7 +306,7 @@ public class PlayerCombat : MonoBehaviour
 
     void KrisTuningTimeGap()
     {
-
+        krisCanShootTuning = true;
     }
 
     void ResetCooldownPk()
@@ -330,7 +335,9 @@ public class PlayerCombat : MonoBehaviour
             Gizmos.DrawWireSphere(tripAttackPoint.position, tripRange[2]);
             Gizmos.DrawWireSphere(tripAttackPoint.position, tripRange[3]);
         }
+        */
 
+        /*
         if (pHS.isKrisActive)
         {
             Gizmos.DrawWireSphere(krisAttackPoint.position, krisRange[0]);
