@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    States state;
+    States state;    
 
     private EnemyHealthScript eHS;
     private PlayerHealthScript pHS;
@@ -69,10 +69,14 @@ public class PlayerCombat : MonoBehaviour
     private int currentCrystalSpearCharges;
     public bool hasCrystalSpearCharge;
 
+    [Header("Animation")]
+    public Animator anim;
+    private string currentState;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         eHS = GetComponent<EnemyHealthScript>();
         pHS = GetComponent<PlayerHealthScript>();
 
@@ -116,6 +120,7 @@ public class PlayerCombat : MonoBehaviour
         // Basic
         if (Input.GetMouseButtonDown(0) && !voidPulses)
         {
+            ChangeAnimation("Trip Basic");
             Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[0], enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
@@ -128,6 +133,7 @@ public class PlayerCombat : MonoBehaviour
         // Void Pulses Basic
         if (Input.GetMouseButtonDown(0) && voidPulses)
         {
+            ChangeAnimation("Trip Pinnacle");
             Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[0], enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
@@ -140,6 +146,7 @@ public class PlayerCombat : MonoBehaviour
         // Advanced
         if (Input.GetKeyDown(KeyCode.Q) && tripSkillsReady[1])
         {
+            ChangeAnimation("Trip Advn");
             Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[1], enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
@@ -155,6 +162,7 @@ public class PlayerCombat : MonoBehaviour
         // Tuning
         if (Input.GetKeyDown(KeyCode.E) && tripSkillsReady[2])
         {
+            ChangeAnimation("Trip Tuning");
             Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[2], enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
@@ -409,5 +417,17 @@ public class PlayerCombat : MonoBehaviour
         kristuningSkillStamCost = 0;
         krispinnacleSkillStamCost = 20;
         */
+    }
+
+    void ChangeAnimation(string newState)
+    {
+        // Stop the animation iterupting itself
+        if (currentState == newState) return;
+
+        // Play the animation
+        anim.Play(newState);
+
+        // Reassign the currentState#
+        currentState = newState;
     }
 }
