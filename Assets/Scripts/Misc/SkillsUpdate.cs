@@ -58,9 +58,9 @@ public class SkillsUpdate : MonoBehaviour
         {
             skillNum++;
 
-            if (skillNum > 3 || skillNum <= 0)
+            if (skillNum > 3 || skillNum < 0)
             {
-                skillNum = 1;
+                skillNum = 0;
             }
 
             if (pHS.isTripActive)

@@ -120,9 +120,8 @@ public class PlayerCombat : MonoBehaviour
     void TripAttacks()
     {
         // Basic
-        if (Input.GetMouseButtonDown(0) && !voidPulses && tripSkillsReady[1])
+        if (Input.GetMouseButtonDown(0) && !voidPulses && tripSkillsReady[0])
         {
-            
             anim.Play("Trip Basic");
             Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[0], enemyLayers);
 
@@ -131,10 +130,13 @@ public class PlayerCombat : MonoBehaviour
                 //print("We hit" + enemy.name);
                 enemy.GetComponent<EnemyHealthScript>().TakeDamage(tripDamage[0]);
             }
+
+            tripSkillsReady[0] = false;
+            Invoke(nameof(ResetCooldownBt), tripCooldowns[0]);
         }
 
         // Void Pulses Basic
-        if (Input.GetMouseButtonDown(0) && voidPulses && tripSkillsReady[1])
+        if (Input.GetMouseButtonDown(0) && voidPulses && tripSkillsReady[0])
         {
             anim.Play("Trip Pinnacle");
             Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[0], enemyLayers);
@@ -144,6 +146,9 @@ public class PlayerCombat : MonoBehaviour
                 //print("We hit" + enemy.name);
                 enemy.GetComponent<EnemyHealthScript>().TakeDamage(tripDamage[3]);
             }
+
+            tripSkillsReady[0] = false;
+            Invoke(nameof(ResetCooldownBt), tripCooldowns[0]);
         }
 
         // Advanced
@@ -191,7 +196,7 @@ public class PlayerCombat : MonoBehaviour
     
     void KrisAttacks()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && krisSkillsReady[0])
         {
             // Instanciates the spear gameobject
             GameObject CreateSpear = Instantiate(krisSpear, krisAttackPoint.position, krisAttackPoint.rotation);
@@ -208,6 +213,9 @@ public class PlayerCombat : MonoBehaviour
                 print("We hit" + enemy.name);
                 enemy.GetComponent<EnemyHealthScript>().TakeDamage(krisDamage[0]);
             }
+
+            krisSkillsReady[0] = false;
+            Invoke(nameof(ResetCooldownBk), krisCooldowns[0]);
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && krisSkillsReady[1])
@@ -393,7 +401,7 @@ public class PlayerCombat : MonoBehaviour
         tripRange[3] = 1;
 
         // Cooldowns
-        tripCooldowns[0] = 0.1f;
+        tripCooldowns[0] = 0.5f;
         tripCooldowns[1] = 2;
         tripCooldowns[2] = 30;
         tripCooldowns[3] = 120;
@@ -426,7 +434,7 @@ public class PlayerCombat : MonoBehaviour
         krisRange[3] = 0;
 
         // Cooldowns
-        krisCooldowns[0] = 0.5f;
+        krisCooldowns[0] = 1.5f;
         krisCooldowns[1] = 10;
         krisCooldowns[2] = 20;
         krisCooldowns[3] = 120;
