@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     States state;
 
+    private PlayerCombat pComScript;
     private PlayerHealthScript pHS;
     public GameObject pCS;
 
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform orientation;
 
-
+    public bool notIdle = false;
 
     float xInput;
     float yInput;
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     {
         state = States.Idle;
 
+        pComScript = pCS.GetComponent<PlayerCombat>();
         pHS = pCS.GetComponent<PlayerHealthScript>();
 
         // Gets the rigidbody and stops it rotating
@@ -99,6 +101,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Idle()
     {
+        if (!notIdle)
+        {
+            pComScript.ChangeAnimation("Idle");
+        }
+
         // Makes player walk
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {

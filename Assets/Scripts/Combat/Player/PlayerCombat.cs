@@ -82,10 +82,12 @@ public class PlayerCombat : MonoBehaviour
 
         drawGizmos = false;
 
+        tripSkillsReady[0] = true;
         tripSkillsReady[1] = true;
         tripSkillsReady[2] = true;
         tripSkillsReady[3] = true;
 
+        krisSkillsReady[0] = true;
         krisSkillsReady[1] = true;
         krisSkillsReady[2] = true;
         krisSkillsReady[3] = true;
@@ -118,9 +120,10 @@ public class PlayerCombat : MonoBehaviour
     void TripAttacks()
     {
         // Basic
-        if (Input.GetMouseButtonDown(0) && !voidPulses)
+        if (Input.GetMouseButtonDown(0) && !voidPulses && tripSkillsReady[1])
         {
-            ChangeAnimation("Trip Basic");
+            
+            anim.Play("Trip Basic");
             Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[0], enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
@@ -131,9 +134,9 @@ public class PlayerCombat : MonoBehaviour
         }
 
         // Void Pulses Basic
-        if (Input.GetMouseButtonDown(0) && voidPulses)
+        if (Input.GetMouseButtonDown(0) && voidPulses && tripSkillsReady[1])
         {
-            ChangeAnimation("Trip Pinnacle");
+            anim.Play("Trip Pinnacle");
             Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[0], enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
@@ -146,7 +149,7 @@ public class PlayerCombat : MonoBehaviour
         // Advanced
         if (Input.GetKeyDown(KeyCode.Q) && tripSkillsReady[1])
         {
-            ChangeAnimation("Trip Advn");
+            anim.Play("Trip Advn");
             Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[1], enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
@@ -162,7 +165,7 @@ public class PlayerCombat : MonoBehaviour
         // Tuning
         if (Input.GetKeyDown(KeyCode.E) && tripSkillsReady[2])
         {
-            ChangeAnimation("Trip Tuning");
+            anim.Play("Trip Tuning");
             Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[2], enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
@@ -276,8 +279,14 @@ public class PlayerCombat : MonoBehaviour
             Invoke(nameof(ResetCooldownPk), krisCooldowns[3]);
         }
     }
-    
+
     // Cooldown resets
+    #region Trip
+    void ResetCooldownBt()
+    {
+        tripSkillsReady[0] = true;
+        print("Basic skill is ready");
+    }
     void ResetCooldownAt()
     {
         tripSkillsReady[1] = true;
@@ -298,18 +307,26 @@ public class PlayerCombat : MonoBehaviour
         tripSkillsReady[3] = true;
         print("Pinnacle skill is ready");
     }
+    #endregion
+
+    #region Kris
+    void ResetCooldownBk()
+    {
+        krisSkillsReady[0] = true;
+        print("Kris basic skill is ready");
+    }
 
     void ResetCooldownAk()
     {
         krisSkillsReady[1] = true;
-        print("Advanced skill is ready");
+        print("Kris advanced skill is ready");
     }
 
     void ResetCooldownTk()
     {
 
         krisSkillsReady[2] = true;
-        print("Tuning skill is ready");
+        print("Kris tuning skill is ready");
     }
 
     void KrisTuningTimeGap()
@@ -322,8 +339,9 @@ public class PlayerCombat : MonoBehaviour
         voidPulses = false;
 
         krisSkillsReady[3] = true;
-        print("Pinnacle skill is ready");
+        print("Kris pinnacle skill is ready");
     }
+    #endregion
 
     private void OnDrawGizmosSelected()
     {
@@ -361,7 +379,7 @@ public class PlayerCombat : MonoBehaviour
         //-----------------
         // Trip
         //-----------------
-
+        #region Trip
         // Damage
         tripDamage[0] = 5;
         tripDamage[1] = 15;
@@ -375,6 +393,7 @@ public class PlayerCombat : MonoBehaviour
         tripRange[3] = 1;
 
         // Cooldowns
+        tripCooldowns[0] = 0.1f;
         tripCooldowns[1] = 2;
         tripCooldowns[2] = 30;
         tripCooldowns[3] = 120;
@@ -388,10 +407,12 @@ public class PlayerCombat : MonoBehaviour
         trippinnacleSkillStamCost = 20;
 
         */
+        #endregion
+
         //-----------------
         // Kris
         //-----------------
-
+        #region Kris
         // Damage
         krisDamage[0] = 5;
         krisDamage[1] = 30;
@@ -405,6 +426,7 @@ public class PlayerCombat : MonoBehaviour
         krisRange[3] = 0;
 
         // Cooldowns
+        krisCooldowns[0] = 0.5f;
         krisCooldowns[1] = 10;
         krisCooldowns[2] = 20;
         krisCooldowns[3] = 120;
@@ -417,9 +439,10 @@ public class PlayerCombat : MonoBehaviour
         kristuningSkillStamCost = 0;
         krispinnacleSkillStamCost = 20;
         */
+        #endregion
     }
 
-    void ChangeAnimation(string newState)
+    public void ChangeAnimation(string newState)
     {
         // Stop the animation iterupting itself
         if (currentState == newState) return;
@@ -427,7 +450,7 @@ public class PlayerCombat : MonoBehaviour
         // Play the animation
         anim.Play(newState);
 
-        // Reassign the currentState#
+        // Reassign the currentState
         currentState = newState;
     }
 }
