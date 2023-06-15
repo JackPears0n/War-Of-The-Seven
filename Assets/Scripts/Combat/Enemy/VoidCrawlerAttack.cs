@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class VoidCrawlerAttack : MonoBehaviour
 {
-    private Animator anim;
+    public Animator anim;
     private string currentState;
 
     public NavMeshAgent agent;
@@ -64,20 +64,20 @@ public class VoidCrawlerAttack : MonoBehaviour
         {
             Patroling();
             //print("patroling");
-            ChangeAnimation("Void Crawler Walk");
+            anim.Play("Void Crawler Walk");
         }
 
         if (playerInFOV && !playerInAttackRange)
         {
             ChasePlayer();
             //print("chasing");
-            ChangeAnimation("Void Crawler Walk");
+            anim.Play("Void Crawler Walk");
         }
 
         if (playerInAttackRange && playerInFOV)
         {
             AttackPlayer();
-            ChangeAnimation("Void Crawler Attack");
+            anim.Play("Void Crawler Attack");
         }
     }
 

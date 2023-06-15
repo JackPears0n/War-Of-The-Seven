@@ -100,7 +100,7 @@ public class ProgressionScript : MonoBehaviour
         // Find Kris
         if (!talkedToKris)
         {
-            objective.text = "Objective: \n Look around for clues to your surroundings. \n Follow the yellow arrows pointing at the ground if you need help navigating";
+            objective.text = "Objective: \n Look for the large tree; it should be on this hill. \n Tip: \n Follow the yellow arrows pointing at the ground if you need help navigating";
         }
 
         // talk to Kris
