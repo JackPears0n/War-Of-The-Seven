@@ -49,7 +49,8 @@ public class EnemyHealthScript : MonoBehaviour
         UpdateHPBar();
         if (currentHealth <= 0)
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 

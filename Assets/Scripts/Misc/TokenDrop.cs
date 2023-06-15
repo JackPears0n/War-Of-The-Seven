@@ -16,18 +16,26 @@ public class TokenDrop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameObject.activeSelf == false)
+        {
+            int rand = Random.Range(0, 3);
+            if (rand == 0)
+            {
+                AddModToken();
+            }
+        }
     }
 
     public void AddModToken()
     {
         ss.maxTokens++;
         ss.currentTokens++;
+        print("Skill Point Gained");
     }
 
     private void OnDestroy()
     {
-        int rand = Random.Range(0, 9);
+        int rand = Random.Range(0, 3);
         if (rand == 0)
         {
             AddModToken();
