@@ -27,7 +27,7 @@ public class EnemyHealthScript : MonoBehaviour
 
         if (gameObject.tag == "Void Crawler")
         {
-            maxHealth = 200;
+            maxHealth = 450;
             currentHealth = maxHealth;
         }
 
@@ -47,10 +47,15 @@ public class EnemyHealthScript : MonoBehaviour
     void CheckHealth()
     {
         UpdateHPBar();
-        if (currentHealth <= 0)
+        if (gameObject.tag == "Void Orb" && currentHealth <= 0)
         {
-            //gameObject.SetActive(false);
+
             Destroy(gameObject);
+        }
+        else if (currentHealth <= 0)
+        {
+            gameObject.SetActive(false);
+
         }
     }
 
