@@ -6,6 +6,7 @@ public class KrisCombat : MonoBehaviour
 {
     States state;
 
+    public GameObject playerContainer;
     private EnemyHealthScript eHS;
     private PlayerHealthScript pHS;
 
@@ -62,7 +63,7 @@ public class KrisCombat : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         eHS = GetComponent<EnemyHealthScript>();
-        pHS = GetComponent<PlayerHealthScript>();
+        pHS = playerContainer.GetComponent<PlayerHealthScript>();
 
         drawGizmos = false;
 
@@ -87,6 +88,11 @@ public class KrisCombat : MonoBehaviour
         if (pHS.isKrisActive)
         {
             KrisAttacks();
+        }
+        else
+        {
+
+            return;
         }
     }
 

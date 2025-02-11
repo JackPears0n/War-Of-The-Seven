@@ -160,10 +160,11 @@ public class TripCombat : MonoBehaviour
         }
     }
 
+    //Skills
     #region Skills
     IEnumerator TripBasic()
     {
-        anim.Play("Trip Basic");
+        //anim.Play("Trip Basic");
 
         yield return new WaitForSeconds(0.5F);        
         Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[0], enemyLayers);
@@ -181,7 +182,7 @@ public class TripCombat : MonoBehaviour
 
     IEnumerator TripAdvanced()
     {
-        anim.Play("Trip Advn");
+        //anim.Play("Trip Advn");
 
         yield return new WaitForSeconds(0.3F);
 
@@ -199,7 +200,7 @@ public class TripCombat : MonoBehaviour
 
     IEnumerator TripTuning()
     {
-        anim.Play("Trip Tuning");
+        //anim.Play("Trip Tuning");
 
         Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[2], enemyLayers);
 
@@ -227,7 +228,7 @@ public class TripCombat : MonoBehaviour
 
     IEnumerator TripBurstBasic()
     {
-        anim.Play("Trip Pinnacle");
+        //anim.Play("Trip Pinnacle");
 
         Collider[] hitEnemies = Physics.OverlapSphere(tripAttackPoint.position, tripRange[0], enemyLayers);
 
